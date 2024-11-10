@@ -31,7 +31,69 @@ public class Reserva {
         return codigo;
         
     }
-    
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+//    public Espacio getEspacioDisponible() {
+//        return espacioDisponible;
+//    }
+
+//    public void setEspacioDisponible(Espacio espacioDisponible) {
+//        this.espacioDisponible = espacioDisponible;
+//    }
+
+    public char getConfirmacion() {
+        return confirmacion;
+    }
+
+    public void setConfirmacion(char confirmacion) {
+        this.confirmacion = confirmacion;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public int getCantidadReserva() {
+        return cantidadReserva;
+    }
+
+    public void setCantidadReserva(int cantidadReserva) {
+        this.cantidadReserva = cantidadReserva;
+    }
+
+    public String getCodigoReserva() {
+        return codigoReserva;
+    }
+
+    public void setCodigoReserva(String codigoReserva) {
+        this.codigoReserva = codigoReserva;
+    }
+
+    public String getMotivo() {
+        return motivo;
+    }
+
+    public void setMotivo(String motivo) {
+        this.motivo = motivo;
+    }
 
 
 }
