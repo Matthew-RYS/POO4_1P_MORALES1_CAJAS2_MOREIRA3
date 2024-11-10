@@ -1,13 +1,22 @@
 package proyectopoo;
 
 public class Reserva {
-    public String Feccha;
+    public String fecha;
     //public Espacio espacioDisponible;
     public char confirmacion;
     public Usuario usuario;
     public String estado;
     public int cantidadReserva;
-    public int codigoReserva;
+    public String codigoReserva;
     public String motivo;
+    
+    public Reserva(String fecha, String estado, String codigoReserva){
+        this.fecha = fecha;
+        this.estado = estado;
+        this.codigoReserva= codigoReserva;
+
+
+    }
+
 
 }
