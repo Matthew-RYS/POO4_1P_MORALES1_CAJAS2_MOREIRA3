@@ -1,4 +1,5 @@
 package proyectopoo;
+import java.util.Random;
 
 public class Reserva {
     public String fecha;
@@ -17,6 +18,20 @@ public class Reserva {
 
 
     }
+    
+    public void cambiarEstado(String estado, String motivo){
+        this.estado=estado;
+        this.motivo=motivo;
+
+    }
+
+    private int generarCodigo(){
+        Random rd= new Random();
+        int codigo=rd.nextInt(9000)+1000;
+        return codigo;
+        
+    }
+    
 
 
 }
