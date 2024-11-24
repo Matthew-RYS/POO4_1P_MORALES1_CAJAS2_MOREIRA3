@@ -1,7 +1,8 @@
 package proyectopoo;
 
 public class Espacio {
-    private String facultad;
+    private String tipo;
+    
 
     
 }

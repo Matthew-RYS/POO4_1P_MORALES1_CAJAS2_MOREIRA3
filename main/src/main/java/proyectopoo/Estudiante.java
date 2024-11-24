@@ -1,5 +1,6 @@
 package proyectopoo;
 import java.util.Date;
+
 public class Estudiante extends Usuario{
     private String matricula;
     private String carrera;

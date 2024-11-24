@@ -1,6 +1,7 @@
 package proyectopoo;
 import java.util.Date;
 
+
 public class Profesor extends Usuario{
     private String facultad;
     private ArrayList<String> materias;

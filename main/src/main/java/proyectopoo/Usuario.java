@@ -1,4 +1,5 @@
 package proyectopoo;
+    
 public abstract class Usuario{
     protected String codigoUnico;
     protected String cedula;
