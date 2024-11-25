@@ -1,5 +1,9 @@
 package proyectopoo;
-    
+
+import java.util.ArrayList;
+import java.util.Date;
+import proyectopoo.archivo.ManejoArchivos;
+
 public abstract class Usuario{
     protected String codigoUnico;
     protected String cedula;
@@ -9,10 +13,18 @@ public abstract class Usuario{
     protected String contrasena;
     protected String correo;
     protected String rol;
-    private void logIn(String Usuario, String contrasena){
+    private boolean logIn(String usuario, String contrasena){
+        ArrayList<String> lineas = ManejoArchivos.LeeFichero("Usuario.txt");
+        for(String linea: lineas){
+            String[] palabras = linea.split("|");
+            if(palabras[4].equals(usuario) && palabras[5].equals(contrasena)){
+                return true;
+            }
+        }
+        return false;
     }
-    public abstract void gestionarReserva();
-    public abstract void consultarReserva();
+    public abstract void gestionarReserva(Date fecha, Espacio espacio, String motivo);
+    public abstract void consultarReserva(Date fecha);
     public void enviarCorreo(){
     }
     public String getCodigoUnico() {
