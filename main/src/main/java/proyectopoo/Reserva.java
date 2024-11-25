@@ -1,6 +1,10 @@
 package proyectopoo;
 import java.util.Random;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3a1ce2f76f71f8a905dadcff8d08b69eead91658
 public class Reserva {
     public String fecha;
     //public Espacio espacioDisponible;
