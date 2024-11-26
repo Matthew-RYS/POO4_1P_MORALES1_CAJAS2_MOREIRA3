@@ -9,6 +9,16 @@ public class Espacio {
     protected Espacios nombre;
     protected EstadoEspacio estadoEspacio;
     Usuario permiso;
+
+    public Espacio(String tipo, String codigoEspacio, ArrayList<Usuario> acceso, Espacios nombre, EstadoEspacio estadoEspacio, Usuario permiso){
+        this.tipo = tipo;
+        this.codigoEspacio = codigoEspacio;
+        this.acceso = acceso;
+        this.nombre = nombre;
+        this.estadoEspacio = estadoEspacio;
+        this.permiso = permiso;
+    }
+
     public void consultarDisponibilidad(Date fecha){
 
     }
