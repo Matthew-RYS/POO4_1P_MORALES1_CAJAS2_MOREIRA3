@@ -20,6 +20,11 @@ public class Espacio {
     }
 
     public void consultarDisponibilidad(Date fecha){
+        if (this.estadoEspacio == EstadoEspacio.DISPONIBLE) {
+            System.out.println("El espacio esta disponible para la fecha " + fecha);
+        } else {
+            System.out.println("El espacio no esta disponible para la fecha " + fecha);
+        }
 
     }
     public String getTipo() {
