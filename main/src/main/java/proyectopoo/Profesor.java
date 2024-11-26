@@ -6,6 +6,13 @@ import java.util.ArrayList;
 public class Profesor extends Usuario{
     private String facultad;
     private ArrayList<String> materias;
+
+    public Profesor(String codigoUnico, String cedula, String nombres, String apellidos, String ususario, String contrasena, String correo, String rol, String facultad, ArrayList<String> materias){
+        super(codigoUnico, cedula, nombres, apellidos, ususario, contrasena, correo, rol);
+        this.facultad=facultad;
+        this.materias=materias;
+    }
+    
     @Override
     public void gestionarReserva(Date fecha, Espacio espacio, String motivo){
 
