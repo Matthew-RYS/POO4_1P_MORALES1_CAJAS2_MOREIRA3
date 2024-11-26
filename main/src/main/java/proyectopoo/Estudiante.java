@@ -4,6 +4,14 @@ import java.util.Date;
 public class Estudiante extends Usuario{
     private String matricula;
     private String carrera;
+
+    public Estudiante(String codigoUnico, String cedula, String nombres, String apellidos, String ususario, String contrasena, String correo, String rol, String matricula, String carrera){
+        super(codigoUnico, cedula, nombres, apellidos, ususario, contrasena, correo, rol);
+        this.matricula=matricula;
+        this.carrera=carrera;
+    }
+
+
     @Override
     public void gestionarReserva(Date fecha, Espacio espacio, String motivo){ 
 
