@@ -12,9 +12,9 @@ public abstract class Usuario{
     protected String ususario;
     protected String contrasena;
     protected String correo;
-    protected String rol;
+    protected Rol rol;
 
-    public Usuario(String codigoUnico, String cedula, String nombres, String apellidos, String ususario, String contrasena, String correo, String rol){
+    public Usuario(String codigoUnico, String cedula, String nombres, String apellidos, String ususario, String contrasena, String correo, Rol rol){
         this.codigoUnico = codigoUnico;
         this.cedula = cedula;
         this.nombres = nombres;
@@ -34,7 +34,7 @@ public abstract class Usuario{
         }
         return false;
     }
-    public abstract void gestionarReserva(Date fecha, Espacio espacio, String motivo);
+    public abstract Reserva gestionarReserva(Date fecha, Espacio espacio, String motivo);
     public abstract void consultarReserva(Date fecha);
     public String getCodigoUnico() {
         return codigoUnico;
@@ -57,7 +57,7 @@ public abstract class Usuario{
     public String getCorreo() {
         return correo;
     }
-    public String getRol() {
+    public Rol getRol() {
         return rol;
     }
     public void setCodigoUnico(String codigoUnico) {
@@ -81,7 +81,7 @@ public abstract class Usuario{
     public void setCorreo(String correo) {
         this.correo = correo;
     }
-    public void setRol(String rol) {
+    public void setRol(Rol rol) {
         this.rol = rol;
     }
 }

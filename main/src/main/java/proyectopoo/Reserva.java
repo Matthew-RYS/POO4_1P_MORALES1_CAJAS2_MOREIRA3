@@ -4,7 +4,6 @@ import java.util.Date;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-
 import io.github.cdimascio.dotenv.*;
 import java.util.Properties;
 
@@ -17,6 +16,9 @@ public class Reserva {
     public String codigoReserva;
     public String motivo;
     
+    public Reserva(Estado estado){
+        this.estado = estado;
+    }
     public Reserva(Date fecha, Espacio espacio, String motivo, Estado estado){
         this.fecha = fecha;
         this.espacio = espacio;
@@ -75,7 +77,7 @@ public class Reserva {
         try {
             Message mes = new MimeMessage(session);
             mes.setFrom(new InternetAddress(user, "APP RESERVAS"));
-            mes.setRecipients(Message.RecipientType.TO, InternetAddress.parse(this.usuario.getCorreo()));
+            mes.setRecipients(Message.RecipientType.TO, InternetAddress.parse("mijomore@espol.edu.ec"));
             mes.setSubject("Reserva realizada");
             mes.setText(linea);
             Transport.send(mes);
@@ -109,7 +111,49 @@ public class Reserva {
         try {
             Message mes = new MimeMessage(session);
             mes.setFrom(new InternetAddress(user, "APP RESERVAS"));
-            mes.setRecipients(Message.RecipientType.TO, InternetAddress.parse(this.usuario.getCorreo()));
+            mes.setRecipients(Message.RecipientType.TO, InternetAddress.parse("mijomore@espol.edu.ec"));
+            mes.setSubject("Reserva realizada");
+            mes.setText(linea);
+            Transport.send(mes);
+        } catch(Exception e){
+            System.out.println(e.getMessage());
+
+        }
+    }
+
+    public void enviarCorreo(Estado est, String motivo){
+        String linea ="";
+        if(est.equals(Estado.APROBADO)){
+            String linea1 = "Se ha aprobado su reserva con codigo "+this.codigoReserva+" por el siguiente motivo "+motivo;
+            String linea2 = "Atentamente,\nDepartamento Administrativo";
+            linea = linea1 + "\n"+ linea2;
+        }
+        else if(est.equals(Estado.NEGADO)){
+            String linea1 = "Se ha rechazado su reserva con codigo "+this.codigoReserva+" por el siguiente motivo "+motivo;
+            String linea2 = "Atentamente,\nDepartamento Administrativo";
+            linea = linea1 + "\n"+ linea2;
+        }
+        Dotenv dot = Dotenv.load(); 
+        String host = dot.get("MAIL_HOST");
+        String port = dot.get("MAIL_PORT");
+        String user = dot.get("MAIL_USER");
+        String pass = dot.get("MAIL_PASS");
+        Properties prop = new Properties();
+        prop.put("mail.smtp.host", host);
+        prop.put("mail.smtp.port", port);
+        prop.put("mail.smtp.auth", true);
+        prop.put("mail.smtp.starttls.enable", true);
+
+        Session session = Session.getInstance(prop, new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication(){
+                return new PasswordAuthentication(user,pass);
+            }
+        });
+
+        try {
+            Message mes = new MimeMessage(session);
+            mes.setFrom(new InternetAddress(user, "APP RESERVAS"));
+            mes.setRecipients(Message.RecipientType.TO, InternetAddress.parse("mijomore@espol.edu.ec"));
             mes.setSubject("Reserva realizada");
             mes.setText(linea);
             Transport.send(mes);

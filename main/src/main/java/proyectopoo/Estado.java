@@ -10,3 +10,6 @@ enum Espacios {
 enum EstadoEspacio{
     DISPONIBLE, RESERVADO
 }
+enum Rol{
+    ESTUDIANTE, ADMIN, PROFESOR
+}
