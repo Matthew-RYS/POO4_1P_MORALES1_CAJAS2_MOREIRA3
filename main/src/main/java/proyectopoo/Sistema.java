@@ -1,10 +1,12 @@
 package proyectopoo;
 import java.util.ArrayList;
 import proyectopoo.archivo.ManejoArchivos;
+import java.util.Date;
 
 public class Sistema {
     public static ArrayList<Usuario> usuarios;
     public static ArrayList<Espacio> espacios;
+    public static ArrayList<Reserva> reservas;
     public static ArrayList<Estudiante> estudiantes;
     public static ArrayList<Profesor> profesores;
     public static void creacionArchivos(){
@@ -23,5 +25,7 @@ public class Sistema {
                 ManejoArchivos.EscribirArchivo("Estudiantes.txt", linea2);
             }
         }
+    }
+    public static void main(String[] args) {
     }
 }

@@ -1,26 +1,25 @@
 package proyectopoo;
 import java.util.Random;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class Reserva {
-    public String fecha;
-    //public Espacio espacioDisponible;
-    public char confirmacion;
+    public Date fecha;
+    public Espacio espacio;
     public Usuario usuario;
-    public String estado;
+    public Estado estado;
     public int cantidadReserva;
     public String codigoReserva;
     public String motivo;
     
-    public Reserva(String fecha, String estado, String codigoReserva){
+    public Reserva(Date fecha, Espacio espacio, String motivo, Estado estado){
         this.fecha = fecha;
+        this.espacio = espacio;
+        this.motivo = motivo;
         this.estado = estado;
-        this.codigoReserva= codigoReserva;
-
-
     }
-    
     public void cambiarEstado(String estado, String motivo){
-        this.estado=estado;
+        this.estado=Estado.NEGADO;
         this.motivo=motivo;
 
     }
@@ -31,29 +30,22 @@ public class Reserva {
         return codigo;
         
     }
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
-//    public Espacio getEspacioDisponible() {
-//        return espacioDisponible;
-//    }
+    // public Espacio getEspacioDisponible() {
+    //     return espacioDisponible;
+    // }
 
 //    public void setEspacioDisponible(Espacio espacioDisponible) {
 //        this.espacioDisponible = espacioDisponible;
 //    }
 
-    public char getConfirmacion() {
-        return confirmacion;
-    }
-
-    public void setConfirmacion(char confirmacion) {
-        this.confirmacion = confirmacion;
-    }
 
     public Usuario getUsuario() {
         return usuario;
@@ -63,11 +55,11 @@ public class Reserva {
         this.usuario = usuario;
     }
 
-    public String getEstado() {
+    public Estado getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(Estado estado) {
         this.estado = estado;
     }
 
@@ -93,6 +85,12 @@ public class Reserva {
 
     public void setMotivo(String motivo) {
         this.motivo = motivo;
+    }
+    public Espacio getEspacio() {
+        return espacio;
+    }
+    public void setEspacio(Espacio espacio) {
+        this.espacio = espacio;
     }
 
 
