@@ -8,6 +8,7 @@
     <artifactId>main</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+<<<<<<< HEAD
 <dependencies>
     <dependency>
         <groupId>com.sun.mail</groupId>
@@ -22,6 +23,22 @@
     </dependency>
 </dependencies>
 
+=======
+    <dependencies>
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+            
+        <dependency>
+            <groupId>io.github.cdimascio</groupId>
+            <artifactId>dotenv-java</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+
+    </dependencies>
+>>>>>>> 7bcc239c673a85c0c980c53f234217f1f3a7319f
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>

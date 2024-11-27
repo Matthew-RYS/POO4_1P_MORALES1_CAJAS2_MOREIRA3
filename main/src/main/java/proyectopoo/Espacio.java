@@ -3,32 +3,27 @@ package proyectopoo;
 import java.util.ArrayList;
 import java.util.Date;
 public class Espacio {
-    protected String tipo;
+    protected Espacios tipoEspacio;
     protected String codigoEspacio;
     protected ArrayList<Usuario> acceso;
-    protected Espacios nombre;
+    protected String nombre;
     protected EstadoEspacio estadoEspacio;
+    protected int capacidad;
     Usuario permiso;
 
-    public Espacio(String tipo, String codigoEspacio, ArrayList<Usuario> acceso, Espacios nombre, EstadoEspacio estadoEspacio, Usuario permiso){
-        this.tipo = tipo;
+    public Espacio(Espacios tipoEspacio, String codigoEspacio, ArrayList<Usuario> acceso, String nombre, EstadoEspacio estadoEspacio, Usuario permiso, int capacidad){
+        this.tipoEspacio = tipoEspacio;
         this.codigoEspacio = codigoEspacio;
         this.acceso = acceso;
         this.nombre = nombre;
         this.estadoEspacio = estadoEspacio;
         this.permiso = permiso;
+        this.capacidad = capacidad;
     }
 
-    public void consultarDisponibilidad(Date fecha){
-        if (this.estadoEspacio == EstadoEspacio.DISPONIBLE) {
-            System.out.println("El espacio esta disponible para la fecha " + fecha);
-        } else {
-            System.out.println("El espacio no esta disponible para la fecha " + fecha);
-        }
-
-    }
-    public String getTipo() {
-        return tipo;
+    @Override
+    public String toString() {
+        return "Nombre: " + String.valueOf(nombre) + "Codigo: " + this.codigoEspacio;
     }
     public String getCodigoEspacio() {
         return codigoEspacio;
@@ -40,14 +35,11 @@ public class Espacio {
         }
         return String.join(",", usuariosAcceso);
     }
-    public Espacios getNombre() {
+    public String getNombre() {
         return nombre;
     }
     public EstadoEspacio getEstadoEspacio() {
         return estadoEspacio;
-    }
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
     }
     public void setCodigoEspacio(String codigoEspacio) {
         this.codigoEspacio = codigoEspacio;
@@ -55,11 +47,29 @@ public class Espacio {
     public void setAcceso(ArrayList<Usuario> acceso) {
         this.acceso = acceso;
     }
-    public void setNombre(Espacios nombre) {
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
     public void setEstadoEspacio(EstadoEspacio estadoEspacio) {
         this.estadoEspacio = estadoEspacio;
+    }
+    public int getCapacidad() {
+        return capacidad;
+    }
+    public void setCapacidad(int capacidad) {
+        this.capacidad = capacidad;
+    }
+    public Usuario getPermiso() {
+        return permiso;
+    }
+    public void setPermiso(Usuario permiso) {
+        this.permiso = permiso;
+    }
+    public Espacios getTipoEspacio() {
+        return tipoEspacio;
+    }
+    public void setTipoEspacio(Espacios tipoEspacio) {
+        this.tipoEspacio = tipoEspacio;
     }
 
 

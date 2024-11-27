@@ -1,26 +1,43 @@
 package proyectopoo;
 import java.util.Random;
+import java.util.Date;
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import io.github.cdimascio.dotenv.*;
+import java.util.Properties;
 
 public class Reserva {
-    public String fecha;
-    //public Espacio espacioDisponible;
-    public char confirmacion;
+    public Date fecha;
+    public Espacio espacio;
     public Usuario usuario;
-    public String estado;
+    public Estado estado;
     public int cantidadReserva;
     public String codigoReserva;
     public String motivo;
-    
-    public Reserva(String fecha, String estado, String codigoReserva){
-        this.fecha = fecha;
-        this.estado = estado;
-        this.codigoReserva= codigoReserva;
-
-
+    public String toString(){
+        return "Codigo:" + this.codigoReserva+
+               "Fecha: " + String.valueOf(fecha)+
+               "Tipo espacio: " + String.valueOf(this.espacio.getTipoEspacio())+
+               "Nombre espacio" + String.valueOf(this.espacio.getNombre())+
+               "Capacidad: " + String.valueOf(this.espacio.getCapacidad())+
+               "Nombres: " + this.usuario.getNombres()+
+               "Apellidos" + this.usuario.getApellidos();
     }
-    
+    public Reserva(Date fecha){
+        this.fecha = fecha;
+    }
+    public Reserva(Estado estado){
+        this.estado = estado;
+    }
+    public Reserva(Date fecha, Espacio espacio, String motivo, Estado estado){
+        this.fecha = fecha;
+        this.espacio = espacio;
+        this.motivo = motivo;
+        this.estado = estado;
+    }
     public void cambiarEstado(String estado, String motivo){
-        this.estado=estado;
+        this.estado=Estado.NEGADO;
         this.motivo=motivo;
 
     }
@@ -31,28 +48,130 @@ public class Reserva {
         return codigo;
         
     }
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
-//    public Espacio getEspacioDisponible() {
-//        return espacioDisponible;
-//    }
+    // public Espacio getEspacioDisponible() {
+    //     return espacioDisponible;
+    // }
 
 //    public void setEspacioDisponible(Espacio espacioDisponible) {
 //        this.espacioDisponible = espacioDisponible;
 //    }
 
-    public char getConfirmacion() {
-        return confirmacion;
+    public void enviarCorreo(){
+        String linea1 = "El estudiante "+this.usuario.getNombres()+" y apellidos "+this.usuario.getApellidos()+" ha realizado una reserva con codigo "+this.codigoReserva+ " para la fecha "+this.fecha+" en la "+this.espacio.getTipoEspacio()+this.espacio.getNombre();
+        String linea2 = "Ingrese al sistema para aprobar o rechazar la reserva";
+        String linea = linea1 + "\n"+ linea2;
+        Dotenv dot = Dotenv.load(); 
+        String host = dot.get("MAIL_HOST");
+        String port = dot.get("MAIL_PORT");
+        String user = dot.get("MAIL_USER");
+        String pass = dot.get("MAIL_PASS");
+        Properties prop = new Properties();
+        prop.put("mail.smtp.host", host);
+        prop.put("mail.smtp.port", port);
+        prop.put("mail.smtp.auth", true);
+        prop.put("mail.smtp.starttls.enable", true);
+
+        Session session = Session.getInstance(prop, new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication(){
+                return new PasswordAuthentication(user,pass);
+            }
+        });
+
+        try {
+            Message mes = new MimeMessage(session);
+            mes.setFrom(new InternetAddress(user, "APP RESERVAS"));
+            mes.setRecipients(Message.RecipientType.TO, InternetAddress.parse("mijomore@espol.edu.ec"));
+            mes.setSubject("Reserva realizada");
+            mes.setText(linea);
+            Transport.send(mes);
+        } catch(Exception e){
+            System.out.println(e.getMessage());
+
+        }
     }
 
-    public void setConfirmacion(char confirmacion) {
-        this.confirmacion = confirmacion;
+    public void enviarCorreo(String materia){
+        String linea1 = "Se le notifica que el profesor "+this.usuario.getNombres()+" y apellidos "+this.usuario.getApellidos()+" ha realizado una reserva con codigo "+ this.codigoReserva+ " para la fecha "+this.fecha+" en la "+this.espacio.getTipoEspacio()+ this.espacio.getNombre()+" para la materia "+materia;
+        String linea2 = "Ingrese al sistema para aprobar o rechazar la reserva";
+        String linea = linea1 + "\n"+ linea2;
+        Dotenv dot = Dotenv.load(); 
+        String host = dot.get("MAIL_HOST");
+        String port = dot.get("MAIL_PORT");
+        String user = dot.get("MAIL_USER");
+        String pass = dot.get("MAIL_PASS");
+        Properties prop = new Properties();
+        prop.put("mail.smtp.host", host);
+        prop.put("mail.smtp.port", port);
+        prop.put("mail.smtp.auth", true);
+        prop.put("mail.smtp.starttls.enable", true);
+
+        Session session = Session.getInstance(prop, new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication(){
+                return new PasswordAuthentication(user,pass);
+            }
+        });
+
+        try {
+            Message mes = new MimeMessage(session);
+            mes.setFrom(new InternetAddress(user, "APP RESERVAS"));
+            mes.setRecipients(Message.RecipientType.TO, InternetAddress.parse("mijomore@espol.edu.ec"));
+            mes.setSubject("Reserva realizada");
+            mes.setText(linea);
+            Transport.send(mes);
+        } catch(Exception e){
+            System.out.println(e.getMessage());
+
+        }
+    }
+
+    public void enviarCorreo(Estado est, String motivo){
+        String linea ="";
+        if(est.equals(Estado.APROBADO)){
+            String linea1 = "Se ha aprobado su reserva con codigo "+this.codigoReserva+" por el siguiente motivo "+motivo;
+            String linea2 = "Atentamente,\nDepartamento Administrativo";
+            linea = linea1 + "\n"+ linea2;
+        }
+        else if(est.equals(Estado.NEGADO)){
+            String linea1 = "Se ha rechazado su reserva con codigo "+this.codigoReserva+" por el siguiente motivo "+motivo;
+            String linea2 = "Atentamente,\nDepartamento Administrativo";
+            linea = linea1 + "\n"+ linea2;
+        }
+        Dotenv dot = Dotenv.load(); 
+        String host = dot.get("MAIL_HOST");
+        String port = dot.get("MAIL_PORT");
+        String user = dot.get("MAIL_USER");
+        String pass = dot.get("MAIL_PASS");
+        Properties prop = new Properties();
+        prop.put("mail.smtp.host", host);
+        prop.put("mail.smtp.port", port);
+        prop.put("mail.smtp.auth", true);
+        prop.put("mail.smtp.starttls.enable", true);
+
+        Session session = Session.getInstance(prop, new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication(){
+                return new PasswordAuthentication(user,pass);
+            }
+        });
+
+        try {
+            Message mes = new MimeMessage(session);
+            mes.setFrom(new InternetAddress(user, "APP RESERVAS"));
+            mes.setRecipients(Message.RecipientType.TO, InternetAddress.parse("mijomore@espol.edu.ec"));
+            mes.setSubject("Reserva realizada");
+            mes.setText(linea);
+            Transport.send(mes);
+        } catch(Exception e){
+            System.out.println(e.getMessage());
+
+        }
     }
 
     public Usuario getUsuario() {
@@ -63,11 +182,11 @@ public class Reserva {
         this.usuario = usuario;
     }
 
-    public String getEstado() {
+    public Estado getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(Estado estado) {
         this.estado = estado;
     }
 
@@ -93,6 +212,12 @@ public class Reserva {
 
     public void setMotivo(String motivo) {
         this.motivo = motivo;
+    }
+    public Espacio getEspacio() {
+        return espacio;
+    }
+    public void setEspacio(Espacio espacio) {
+        this.espacio = espacio;
     }
 
 
