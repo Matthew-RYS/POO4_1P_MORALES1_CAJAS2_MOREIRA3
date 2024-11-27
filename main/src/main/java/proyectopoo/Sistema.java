@@ -9,7 +9,7 @@ public class Sistema {
     public static ArrayList<Reserva> reservas;
     public static ArrayList<Estudiante> estudiantes;
     public static ArrayList<Profesor> profesores;
-    public static void creacionArchivos(){
+    public static void crearArchivos(){
         ArrayList<Usuario> usuarios = Sistema.usuarios;
         for(Usuario u: usuarios){
             String linea = u.getCodigoUnico()+"|"+u.getCedula()+"|"+u.getNombres()+"|"+u.getApellidos()+"|"+u.getUsusario()+"|"+u.getContrasena()+"|"+u.getCorreo()+"|"+u.getRol(); 
@@ -28,4 +28,5 @@ public class Sistema {
     }
     public static void main(String[] args) {
     }
+
 }

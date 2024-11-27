@@ -1,6 +1,7 @@
 package proyectopoo;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Scanner;
 
 
 public class Estudiante extends Usuario{
@@ -16,15 +17,15 @@ public class Estudiante extends Usuario{
 
 
     @Override
-    public Reserva gestionarReserva(Date fecha, Espacio espacio, String motivo){ 
+    public Reserva gestionarReserva(Date fecha, Espacio espacio, String motivo){
         Reserva r = new Reserva(fecha, espacio, motivo, Estado.PENDIENTE);
         r.enviarCorreo();
-        reservasRealizadas.add(r);
+        Sistema.reservas.add(r);
         return r;
     }
     @Override
     public void consultarReserva(Date fecha){
-        for(Reserva i:reservasRealizadas){
+        for(Reserva i:Sistema.reservas){
             if(i.getFecha().equals(fecha)){
                 System.out.println(i.toString());
             }

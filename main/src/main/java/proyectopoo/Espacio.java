@@ -1,19 +1,17 @@
 package proyectopoo;
 
 import java.util.ArrayList;
-import java.util.Date;
 public class Espacio {
     protected Espacios tipoEspacio;
-    protected String codigoEspacio;
+    protected int codigoEspacio;
     protected ArrayList<Usuario> acceso;
     protected String nombre;
     protected EstadoEspacio estadoEspacio;
     protected int capacidad;
     Usuario permiso;
 
-    public Espacio(Espacios tipoEspacio, String codigoEspacio, ArrayList<Usuario> acceso, String nombre, EstadoEspacio estadoEspacio, Usuario permiso, int capacidad){
+    public Espacio(Espacios tipoEspacio, ArrayList<Usuario> acceso, String nombre, EstadoEspacio estadoEspacio, Usuario permiso, int capacidad){
         this.tipoEspacio = tipoEspacio;
-        this.codigoEspacio = codigoEspacio;
         this.acceso = acceso;
         this.nombre = nombre;
         this.estadoEspacio = estadoEspacio;
@@ -25,7 +23,7 @@ public class Espacio {
     public String toString() {
         return "Nombre: " + String.valueOf(nombre) + "Codigo: " + this.codigoEspacio;
     }
-    public String getCodigoEspacio() {
+    public int getCodigoEspacio() {
         return codigoEspacio;
     }
     public String getAcceso() {
@@ -41,7 +39,7 @@ public class Espacio {
     public EstadoEspacio getEstadoEspacio() {
         return estadoEspacio;
     }
-    public void setCodigoEspacio(String codigoEspacio) {
+    public void setCodigoEspacio(int codigoEspacio) {
         this.codigoEspacio = codigoEspacio;
     }
     public void setAcceso(ArrayList<Usuario> acceso) {
@@ -70,8 +68,5 @@ public class Espacio {
     }
     public void setTipoEspacio(Espacios tipoEspacio) {
         this.tipoEspacio = tipoEspacio;
-    }
-
-
-    
+    }   
 }

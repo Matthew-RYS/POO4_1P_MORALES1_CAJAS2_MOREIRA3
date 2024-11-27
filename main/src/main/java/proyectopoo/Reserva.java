@@ -12,9 +12,10 @@ public class Reserva {
     public Espacio espacio;
     public Usuario usuario;
     public Estado estado;
-    public int cantidadReserva;
-    public String codigoReserva;
+    public int codigoReserva;
     public String motivo;
+    public static int contador;
+    
     public String toString(){
         return "Codigo:" + this.codigoReserva+
                "Fecha: " + String.valueOf(fecha)+
@@ -35,6 +36,15 @@ public class Reserva {
         this.espacio = espacio;
         this.motivo = motivo;
         this.estado = estado;
+    }
+    public Reserva(Date fecha, Espacio espacio, String motivo, Estado estado, Usuario usuario, int codigoReserva){
+        this.fecha = fecha;
+        this.espacio = espacio;
+        this.motivo = motivo;
+        this.estado = estado;
+        this.usuario = usuario;
+        this.codigoReserva =generarCodigo();
+        ++contador;
     }
     public void cambiarEstado(String estado, String motivo){
         this.estado=Estado.NEGADO;
@@ -189,20 +199,11 @@ public class Reserva {
     public void setEstado(Estado estado) {
         this.estado = estado;
     }
-
-    public int getCantidadReserva() {
-        return cantidadReserva;
-    }
-
-    public void setCantidadReserva(int cantidadReserva) {
-        this.cantidadReserva = cantidadReserva;
-    }
-
-    public String getCodigoReserva() {
+    public int getCodigoReserva() {
         return codigoReserva;
     }
 
-    public void setCodigoReserva(String codigoReserva) {
+    public void setCodigoReserva(int codigoReserva) {
         this.codigoReserva = codigoReserva;
     }
 
