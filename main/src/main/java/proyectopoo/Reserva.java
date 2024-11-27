@@ -15,7 +15,18 @@ public class Reserva {
     public int cantidadReserva;
     public String codigoReserva;
     public String motivo;
-    
+    public String toString(){
+        return "Codigo:" + this.codigoReserva+
+               "Fecha: " + String.valueOf(fecha)+
+               "Tipo espacio: " + String.valueOf(this.espacio.getTipoEspacio())+
+               "Nombre espacio" + String.valueOf(this.espacio.getNombre())+
+               "Capacidad: " + String.valueOf(this.espacio.getCapacidad())+
+               "Nombres: " + this.usuario.getNombres()+
+               "Apellidos" + this.usuario.getApellidos();
+    }
+    public Reserva(Date fecha){
+        this.fecha = fecha;
+    }
     public Reserva(Estado estado){
         this.estado = estado;
     }
@@ -54,7 +65,7 @@ public class Reserva {
 //    }
 
     public void enviarCorreo(){
-        String linea1 = "El estudiante "+this.usuario.getNombres()+" y apellidos "+this.usuario.getApellidos()+" ha realizado una reserva con codigo "+this.codigoReserva+ " para la fecha "+this.fecha+" en la "+this.espacio.getTipo()+this.espacio.getNombre();
+        String linea1 = "El estudiante "+this.usuario.getNombres()+" y apellidos "+this.usuario.getApellidos()+" ha realizado una reserva con codigo "+this.codigoReserva+ " para la fecha "+this.fecha+" en la "+this.espacio.getTipoEspacio()+this.espacio.getNombre();
         String linea2 = "Ingrese al sistema para aprobar o rechazar la reserva";
         String linea = linea1 + "\n"+ linea2;
         Dotenv dot = Dotenv.load(); 
@@ -88,7 +99,7 @@ public class Reserva {
     }
 
     public void enviarCorreo(String materia){
-        String linea1 = "Se le notifica que el profesor "+this.usuario.getNombres()+" y apellidos "+this.usuario.getApellidos()+" ha realizado una reserva con codigo "+ this.codigoReserva+ " para la fecha "+this.fecha+" en la "+this.espacio.getTipo()+ this.espacio.getNombre()+" para la materia "+materia;
+        String linea1 = "Se le notifica que el profesor "+this.usuario.getNombres()+" y apellidos "+this.usuario.getApellidos()+" ha realizado una reserva con codigo "+ this.codigoReserva+ " para la fecha "+this.fecha+" en la "+this.espacio.getTipoEspacio()+ this.espacio.getNombre()+" para la materia "+materia;
         String linea2 = "Ingrese al sistema para aprobar o rechazar la reserva";
         String linea = linea1 + "\n"+ linea2;
         Dotenv dot = Dotenv.load(); 

@@ -25,10 +25,6 @@ public class Espacio {
     public String toString() {
         return "Nombre: " + String.valueOf(nombre) + "Codigo: " + this.codigoEspacio;
     }
-
-    public Espacios getTipo() {
-        return tipoEspacio;
-    }
     public String getCodigoEspacio() {
         return codigoEspacio;
     }
@@ -45,9 +41,6 @@ public class Espacio {
     public EstadoEspacio getEstadoEspacio() {
         return estadoEspacio;
     }
-    public void setTipo(Espacios tipoEspacio) {
-        this.tipoEspacio = tipoEspacio;
-    }
     public void setCodigoEspacio(String codigoEspacio) {
         this.codigoEspacio = codigoEspacio;
     }
@@ -59,6 +52,24 @@ public class Espacio {
     }
     public void setEstadoEspacio(EstadoEspacio estadoEspacio) {
         this.estadoEspacio = estadoEspacio;
+    }
+    public int getCapacidad() {
+        return capacidad;
+    }
+    public void setCapacidad(int capacidad) {
+        this.capacidad = capacidad;
+    }
+    public Usuario getPermiso() {
+        return permiso;
+    }
+    public void setPermiso(Usuario permiso) {
+        this.permiso = permiso;
+    }
+    public Espacios getTipoEspacio() {
+        return tipoEspacio;
+    }
+    public void setTipoEspacio(Espacios tipoEspacio) {
+        this.tipoEspacio = tipoEspacio;
     }
 
 

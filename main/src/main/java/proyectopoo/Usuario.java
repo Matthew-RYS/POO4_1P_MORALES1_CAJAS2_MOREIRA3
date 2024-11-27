@@ -35,7 +35,8 @@ public abstract class Usuario{
         return false;
     }
     public abstract Reserva gestionarReserva(Date fecha, Espacio espacio, String motivo);
-    public abstract void consultarReserva(Date fecha);
+    public void consultarReserva(Date fecha){
+    }
     public String getCodigoUnico() {
         return codigoUnico;
     }
