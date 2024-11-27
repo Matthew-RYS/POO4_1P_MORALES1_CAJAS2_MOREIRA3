@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Admin extends Usuario{
     private Cargo cargo;
 
-    public Admin(String codigoUnico, String cedula, String nombres, String apellidos, String ususario, String contrasena, String correo, Rol rol, Cargo cargo){
+    public Admin(int codigoUnico, String cedula, String nombres, String apellidos, String ususario, String contrasena, String correo, Rol rol, Cargo cargo){
         super(codigoUnico, cedula, nombres, apellidos, ususario, contrasena, correo, rol);
         this.cargo=cargo;
     }

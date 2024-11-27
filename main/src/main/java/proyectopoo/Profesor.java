@@ -6,7 +6,7 @@ public class Profesor extends Usuario{
     private String facultad;
     private ArrayList<String> materias;
 
-    public Profesor(String codigoUnico, String cedula, String nombres, String apellidos, String ususario, String contrasena, String correo, Rol rol, String facultad, ArrayList<String> materias){
+    public Profesor(int codigoUnico, String cedula, String nombres, String apellidos, String ususario, String contrasena, String correo, Rol rol, String facultad, ArrayList<String> materias){
         super(codigoUnico, cedula, nombres, apellidos, ususario, contrasena, correo, rol);
         this.facultad=facultad;
         this.materias=materias;

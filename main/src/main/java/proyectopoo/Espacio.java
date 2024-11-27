@@ -76,6 +76,8 @@ public class Espacio {
         this.tipoEspacio = tipoEspacio;
     }   
     public void mostrarEspaciosDisponibles(){
-        if(this.)
+        if(this.estadoEspacio.equals(EstadoEspacio.DISPONIBLE)){
+            System.err.println(toString());
+        }
     }
 }

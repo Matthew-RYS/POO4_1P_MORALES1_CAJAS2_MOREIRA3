@@ -18,9 +18,7 @@ public class Estudiante extends Usuario{
         Reserva r = new Reserva(fecha, codigo, motivo, Estado.PENDIENTE,this.codigoUnico);
         r.enviarCorreo();
         Sistema.reservas.add(r);
-        return r; //Aqui falta implementarlo bien en el menu de estudiantes, en el pdf primero se muestra el listado de espacios disponibles
-                  //dependiendo de cual escoja, si realiza o no la reserva esta se guarda y se envia el correo, por ello primero se deberia hacer la validacion
-                  //y luego usar el metodo
+        return r;
     }
     @Override
     public void consultarReserva(Date fecha){

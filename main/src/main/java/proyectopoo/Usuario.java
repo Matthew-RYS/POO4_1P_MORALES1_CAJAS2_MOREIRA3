@@ -1,9 +1,9 @@
 package proyectopoo;
 import java.util.Date;
-import java.util.Random;
+
 
 public abstract class Usuario{
-    protected int codigoUnico;
+    protected String codigoUnico;
     protected String cedula;
     protected String nombres;
     protected String apellidos;
@@ -12,7 +12,7 @@ public abstract class Usuario{
     protected String correo;
     protected Rol rol;
 
-    public Usuario(int codigoUnico, String cedula, String nombres, String apellidos, String usuario, String contrasena, String correo, Rol rol){
+    public Usuario(String codigoUnico, String cedula, String nombres, String apellidos, String usuario, String contrasena, String correo, Rol rol){
         this.codigoUnico = codigoUnico;
         this.cedula = cedula;
         this.nombres = nombres;
@@ -26,8 +26,11 @@ public abstract class Usuario{
     public abstract Reserva gestionarReserva(Date fecha, int codigo, String motivo);
     public void consultarReserva(Date fecha){
     }
-    public int getCodigoUnico() {
+    public String getCodigoUnico() {
         return codigoUnico;
+    }
+    public void setCodigoUnico(String codigoUnico) {
+        this.codigoUnico = codigoUnico;
     }
     public String getCedula() {
         return cedula;

@@ -37,16 +37,16 @@ public class Reserva {
         this.motivo = motivo;
         this.estado = estado;
     }
-    public Reserva(Date fecha, int codigo, String motivo, Estado estado, int codigoU){
+    public Reserva(Date fecha, int codigo, String motivo, Estado estado, String codigoU){
         this.fecha = fecha;
         this.motivo = motivo;
         this.estado = estado;
         for(Usuario u:Sistema.usuarios){
-            if(u.getCodigoUnico() == codigo){
+            if(u.getCodigoUnico() == codigoU){
                 this.usuario = u;
             }
         }
-        this.codigoReserva =generarCodigo();
+        this.codigoReserva = generarCodigo();
         for(Espacio e:Sistema.espacios){
             if(e.getCodigoEspacio() == codigo){
                 this.espacio = e;
