@@ -1,6 +1,7 @@
 package proyectopoo;
 
 import java.util.ArrayList;
+import java.util.Random;
 public class Espacio {
     protected Espacios tipoEspacio;
     protected int codigoEspacio;
@@ -17,6 +18,14 @@ public class Espacio {
         this.estadoEspacio = estadoEspacio;
         this.permiso = permiso;
         this.capacidad = capacidad;
+        this.codigoEspacio = generarCodigo();
+    }
+
+    private int generarCodigo(){
+        Random rd= new Random();
+        int codigo=rd.nextInt(9000)+1000;
+        return codigo;
+        
     }
 
     @Override
@@ -38,9 +47,6 @@ public class Espacio {
     }
     public EstadoEspacio getEstadoEspacio() {
         return estadoEspacio;
-    }
-    public void setCodigoEspacio(int codigoEspacio) {
-        this.codigoEspacio = codigoEspacio;
     }
     public void setAcceso(ArrayList<Usuario> acceso) {
         this.acceso = acceso;

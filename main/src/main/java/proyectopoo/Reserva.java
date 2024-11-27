@@ -37,13 +37,21 @@ public class Reserva {
         this.motivo = motivo;
         this.estado = estado;
     }
-    public Reserva(Date fecha, Espacio espacio, String motivo, Estado estado, Usuario usuario, int codigoReserva){
+    public Reserva(Date fecha, int codigo, String motivo, Estado estado, int codigoU){
         this.fecha = fecha;
-        this.espacio = espacio;
         this.motivo = motivo;
         this.estado = estado;
-        this.usuario = usuario;
+        for(Usuario u:Sistema.usuarios){
+            if(u.getCodigoUnico() == codigo){
+                this.usuario = u;
+            }
+        }
         this.codigoReserva =generarCodigo();
+        for(Espacio e:Sistema.espacios){
+            if(e.getCodigoEspacio() == codigo){
+                this.espacio = e;
+            }
+        }
         ++contador;
     }
     public void cambiarEstado(String estado, String motivo){
@@ -195,14 +203,13 @@ public class Reserva {
     public Estado getEstado() {
         return estado;
     }
-
-    public void setEstado(Estado estado) {
-        this.estado = estado;
-    }
     public int getCodigoReserva() {
         return codigoReserva;
     }
 
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
     public void setCodigoReserva(int codigoReserva) {
         this.codigoReserva = codigoReserva;
     }

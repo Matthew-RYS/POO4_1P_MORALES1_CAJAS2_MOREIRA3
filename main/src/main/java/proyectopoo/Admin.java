@@ -1,5 +1,4 @@
 package proyectopoo;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -12,7 +11,7 @@ public class Admin extends Usuario{
     }
 
     @Override
-    public Reserva gestionarReserva(Date fecha, Espacio espacio, String motivo){
+    public Reserva gestionarReserva(Date fecha, int codigo, String motivo){
         System.out.println("Ingrese su decision APROBADO/NEGADO");
         Scanner sc = new Scanner(System.in);
         String decision = sc.nextLine();

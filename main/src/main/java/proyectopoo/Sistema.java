@@ -1,7 +1,7 @@
 package proyectopoo;
 import java.util.ArrayList;
 import proyectopoo.archivo.ManejoArchivos;
-import java.util.Date;
+
 
 public class Sistema {
     public static ArrayList<Usuario> usuarios;
@@ -9,23 +9,21 @@ public class Sistema {
     public static ArrayList<Reserva> reservas;
     public static ArrayList<Estudiante> estudiantes;
     public static ArrayList<Profesor> profesores;
-    public static void crearArchivos(){
-        ArrayList<Usuario> usuarios = Sistema.usuarios;
-        for(Usuario u: usuarios){
-            String linea = u.getCodigoUnico()+"|"+u.getCedula()+"|"+u.getNombres()+"|"+u.getApellidos()+"|"+u.getUsusario()+"|"+u.getContrasena()+"|"+u.getCorreo()+"|"+u.getRol(); 
-            ManejoArchivos.EscribirArchivo("Usuarios.txt", linea);
-            if(u instanceof Estudiante){
-                Estudiante e = (Estudiante) u;
-                String linea1 = u.getCodigoUnico()+"|"+u.getCedula()+"|"+u.getNombres()+"|"+u.getApellidos()+"|"+e.getMatricula()+"|"+e.getCarrera();
-                ManejoArchivos.EscribirArchivo("Estudiantes.txt", linea1);
-            }
-            if(u instanceof Profesor){
-                Profesor p = (Profesor) u;
-                String linea2 = u.getCodigoUnico()+"|"+u.getCedula()+"|"+u.getNombres()+"|"+u.getApellidos()+"|"+p.getFacultad()+"|"+p.getMaterias();
-                ManejoArchivos.EscribirArchivo("Estudiantes.txt", linea2);
+    public boolean logIn(String usuario, String contrasena){
+        ArrayList<String> lineas = ManejoArchivos.LeeFichero("Usuario.txt");
+        for(String linea: lineas){
+            String[] palabras = linea.split("|");
+            if(palabras[4].equals(usuario) && palabras[5].equals(contrasena)){
+                return true;
             }
         }
+        return false;
     }
+    public static void mostrarMenuEstudiante(){
+        
+    }
+
+
     public static void main(String[] args) {
     }
 

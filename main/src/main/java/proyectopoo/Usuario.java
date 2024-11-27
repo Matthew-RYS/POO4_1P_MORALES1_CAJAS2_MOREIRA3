@@ -1,42 +1,37 @@
 package proyectopoo;
-
-import java.util.ArrayList;
 import java.util.Date;
-import proyectopoo.archivo.ManejoArchivos;
+import java.util.Random;
+
 public abstract class Usuario{
-    protected String codigoUnico;
+    protected int codigoUnico;
     protected String cedula;
     protected String nombres;
     protected String apellidos;
-    protected String ususario;
+    protected String usuario;
     protected String contrasena;
     protected String correo;
     protected Rol rol;
 
-    public Usuario(String codigoUnico, String cedula, String nombres, String apellidos, String ususario, String contrasena, String correo, Rol rol){
-        this.codigoUnico = codigoUnico;
+    public Usuario(String codigoUnico, String cedula, String nombres, String apellidos, String usuario, String contrasena, String correo, Rol rol){
+        this.codigoUnico = generarCodigo();
         this.cedula = cedula;
         this.nombres = nombres;
         this.apellidos = apellidos;
-        this.ususario = ususario;
+        this.usuario = usuario;
         this.contrasena = contrasena;
         this.correo = correo;
         this.rol = rol;
     }
-    private boolean logIn(String usuario, String contrasena){
-        ArrayList<String> lineas = ManejoArchivos.LeeFichero("Usuario.txt");
-        for(String linea: lineas){
-            String[] palabras = linea.split("|");
-            if(palabras[4].equals(usuario) && palabras[5].equals(contrasena)){
-                return true;
-            }
-        }
-        return false;
+    private int generarCodigo(){
+        Random rd= new Random();
+        int codigo=rd.nextInt(9000)+1000;
+        return codigo;
+        
     }
-    public abstract Reserva gestionarReserva(Date fecha, Espacio espacio, String motivo);
+    public abstract Reserva gestionarReserva(Date fecha, int codigo, String motivo);
     public void consultarReserva(Date fecha){
     }
-    public String getCodigoUnico() {
+    public int getCodigoUnico() {
         return codigoUnico;
     }
     public String getCedula() {
@@ -48,8 +43,8 @@ public abstract class Usuario{
     public String getApellidos() {
         return apellidos;
     }
-    public String getUsusario() {
-        return ususario;
+    public String getUsuario() {
+        return usuario;
     }
     public String getContrasena() {
         return contrasena;
@@ -59,9 +54,6 @@ public abstract class Usuario{
     }
     public Rol getRol() {
         return rol;
-    }
-    public void setCodigoUnico(String codigoUnico) {
-        this.codigoUnico = codigoUnico;
     }
     public void setCedula(String cedula) {
         this.cedula = cedula;
@@ -73,7 +65,7 @@ public abstract class Usuario{
         this.apellidos = apellidos;
     }
     public void setUsusario(String ususario) {
-        this.ususario = ususario;
+        this.usuario = ususario;
     }
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;

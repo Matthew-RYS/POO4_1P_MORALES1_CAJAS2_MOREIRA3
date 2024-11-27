@@ -13,8 +13,8 @@ public class Profesor extends Usuario{
     }
     
     @Override
-    public Reserva gestionarReserva(Date fecha, Espacio espacio, String materia){
-        Reserva r = new Reserva(fecha, espacio, materia, Estado.APROBADO);
+    public Reserva gestionarReserva(Date fecha, int codigo, String materia){
+        Reserva r = new Reserva(fecha, codigo, materia, Estado.APROBADO, this.codigoUnico);
         r.enviarCorreo(materia);
         Sistema.reservas.add(r);
         return r;

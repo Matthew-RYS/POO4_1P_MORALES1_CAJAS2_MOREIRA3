@@ -1,7 +1,6 @@
 package proyectopoo;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Scanner;
 
 
 public class Estudiante extends Usuario{
@@ -17,8 +16,8 @@ public class Estudiante extends Usuario{
 
 
     @Override
-    public Reserva gestionarReserva(Date fecha, Espacio espacio, String motivo){
-        Reserva r = new Reserva(fecha, espacio, motivo, Estado.PENDIENTE);
+    public Reserva gestionarReserva(Date fecha, int codigo, String motivo){
+        Reserva r = new Reserva(fecha, codigo, motivo, Estado.PENDIENTE,this.codigoUnico);
         r.enviarCorreo();
         Sistema.reservas.add(r);
         return r;
