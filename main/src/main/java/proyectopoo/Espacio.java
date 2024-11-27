@@ -75,4 +75,7 @@ public class Espacio {
     public void setTipoEspacio(Espacios tipoEspacio) {
         this.tipoEspacio = tipoEspacio;
     }   
+    public void mostrarEspaciosDisponibles(){
+        if(this.)
+    }
 }

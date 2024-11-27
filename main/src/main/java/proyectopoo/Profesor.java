@@ -24,6 +24,7 @@ public class Profesor extends Usuario{
         for(Reserva i:Sistema.reservas){
             if(i.getFecha().equals(fecha)){
                 System.out.println(i.toString());
+                break;
             }
         }
     }

@@ -12,8 +12,8 @@ public abstract class Usuario{
     protected String correo;
     protected Rol rol;
 
-    public Usuario(String codigoUnico, String cedula, String nombres, String apellidos, String usuario, String contrasena, String correo, Rol rol){
-        this.codigoUnico = generarCodigo();
+    public Usuario(int codigoUnico, String cedula, String nombres, String apellidos, String usuario, String contrasena, String correo, Rol rol){
+        this.codigoUnico = codigoUnico;
         this.cedula = cedula;
         this.nombres = nombres;
         this.apellidos = apellidos;
@@ -22,12 +22,7 @@ public abstract class Usuario{
         this.correo = correo;
         this.rol = rol;
     }
-    private int generarCodigo(){
-        Random rd= new Random();
-        int codigo=rd.nextInt(9000)+1000;
-        return codigo;
-        
-    }
+
     public abstract Reserva gestionarReserva(Date fecha, int codigo, String motivo);
     public void consultarReserva(Date fecha){
     }

@@ -8,7 +8,7 @@ import proyectopoo.Reserva;
 import proyectopoo.Espacio;
 
 public class Archivos {
-    public static void crearArchivos(){
+    public static void crearArchivoUsuarios(){
         for(Usuario u: Sistema.usuarios){
             String linea = u.getCodigoUnico()+"|"+u.getCedula()+"|"+u.getNombres()+"|"+u.getApellidos()+"|"+u.getUsuario()+"|"+u.getContrasena()+"|"+u.getCorreo()+"|"+u.getRol(); 
             ManejoArchivos.EscribirArchivo("Usuarios.txt", linea);
@@ -23,10 +23,14 @@ public class Archivos {
                 ManejoArchivos.EscribirArchivo("Estudiantes.txt", linea2);
             }
         }
+    }
+    public static void crearArchivoReserva(){
         for(Reserva r: Sistema.reservas){
             String linea = r.getCodigoReserva()+"|"+r.getUsuario().getCodigoUnico()+"|"+r.getUsuario().getCedula()+"|"+r.getFecha()+"|"+r.getEspacio().getCodigoEspacio()+"|"+r.getEspacio().getTipoEspacio()+"|"+r.getEstado()+"|"+r.getMotivo(); 
             ManejoArchivos.EscribirArchivo("Reservas.txt", linea);
         }
+    }
+    public static void crearArchivoEspacios(){
         for(Espacio e: Sistema.espacios){
             String linea = e.getCodigoEspacio()+"|"+e.getTipoEspacio()+"|"+e.getNombre()+"|"+e.getCapacidad()+"|"+e.getEstadoEspacio()+"|"+e.getPermiso().getRol();
             ManejoArchivos.EscribirArchivo("Espacios.txt", linea);
