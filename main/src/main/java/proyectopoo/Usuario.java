@@ -3,7 +3,6 @@ package proyectopoo;
 import java.util.ArrayList;
 import java.util.Date;
 import proyectopoo.archivo.ManejoArchivos;
-
 public abstract class Usuario{
     protected String codigoUnico;
     protected String cedula;
