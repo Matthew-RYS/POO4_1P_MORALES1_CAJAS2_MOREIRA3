@@ -17,17 +17,17 @@ public class Admin extends Usuario{
     @Override
     public void gestionarReserva(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("Ingrese el codigo de la reserva a gestionar");
+        System.out.println("Ingrese el codigo de la reserva a gestionar: ");
         int codigoReservaGestionar = sc.nextInt();
         sc.nextLine();
         for(Reserva r: Sistema.reservas){
             if(r.getCodigoReserva()==codigoReservaGestionar){
-                System.out.println("Datos de la reserva"); 
+                System.out.println("Datos de la reserva: "); 
                 r.toString();
-                System.out.println("Ingrese su decision APROBADO/NEGADO");
+                System.out.println("Ingrese la decision tomada APROBADO/NEGADO");
                 String decision = sc.nextLine();
                 Estado estado = Estado.valueOf(decision);
-                System.out.println("Ingrese el motivo de su decision");
+                System.out.println("Ingrese el motivo de su decision: ");
                 String motivo = sc.nextLine();
                 r.setEstado(estado);
                 r.enviarCorreo(estado,motivo);
@@ -37,6 +37,7 @@ public class Admin extends Usuario{
         sc.close();
         
     }
+    @Override
     public void consultarReserva(){
         System.out.println("Numero de reservas creadas: " + Reserva.contador);
         for(Reserva j: Sistema.reservas){

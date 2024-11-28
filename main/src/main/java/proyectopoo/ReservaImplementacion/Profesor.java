@@ -24,7 +24,7 @@ public class Profesor extends Usuario{
         }
         Sistema.regresarMenuPrincipal(this.codigoUnico,"P");
     }
-    
+
     @Override
     public void gestionarReserva(){
         Scanner sc = new Scanner(System.in);

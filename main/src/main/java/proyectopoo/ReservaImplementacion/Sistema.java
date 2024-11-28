@@ -1,6 +1,7 @@
 package proyectopoo.ReservaImplementacion;
 import java.util.ArrayList;
 import java.util.Scanner;
+
 import proyectopoo.ReservaImplementacion.archivo.ManejoArchivos;
 public class Sistema {
     public static ArrayList<Usuario> usuarios = new ArrayList<>();                 
@@ -72,6 +73,7 @@ public class Sistema {
         System.out.print("Ingrese su contraseña: ");
         String contrasena = sc.nextLine();
         logIn(usuario, contrasena);
+        sc.close();
     }
 
     public static void regresarMenuPrincipal(String codigoUnico, String rol){
