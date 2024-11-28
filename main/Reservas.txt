@@ -1,4 +1,0 @@
-5001 | 002 | 0912345678 | 2024-10-10 | 103 | LABORATORIO | APROBADO | Fundamentos de Programación  
-5002 | 001 | 0923456789 | 2024-10-11 | 105 | AULA | PENDIENTE | Estudio de Matemáticas en grupo  
-5003 | 004 | 0934567890 | 2024-10-12 | 108 | AUDITORIO | APROBADO | Estructuras de Datos  
-5004 | 011 | 0927894561 | 2024-10-12 | 112 | CANCHA | RECHAZADO | Práctica Futbol para Interfacultades 
