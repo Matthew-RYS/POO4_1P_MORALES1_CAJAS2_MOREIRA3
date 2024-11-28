@@ -17,7 +17,8 @@ public class Estudiante extends Usuario{
         super(codigoUnico);
     }
 
-    public void consultarReserva(Date fecha){
+    public void consultarReserva(){
+        Date fecha = Reserva.crearFecha();
         for(Reserva i:Sistema.reservas){
             if(i.getFecha().equals(fecha)){
                 System.out.println(i.toString());
