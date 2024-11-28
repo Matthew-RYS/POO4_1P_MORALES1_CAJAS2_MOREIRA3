@@ -37,7 +37,7 @@ public class Admin extends Usuario{
         sc.close();
         
     }
-    protected static void consultarReserva(){
+    public void consultarReserva(){
         System.out.println("Numero de reservas creadas: " + Reserva.contador);
         for(Reserva j: Sistema.reservas){
             if(j.getUsuario() instanceof Estudiante){

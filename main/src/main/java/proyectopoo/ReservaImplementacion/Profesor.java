@@ -15,7 +15,7 @@ public class Profesor extends Usuario{
     public Profesor(String codigoUnico){
         super(codigoUnico);
     }
-    @Override
+
     public void consultarReserva(Date fecha){
         for(Reserva i:Sistema.reservas){
             if(i.getFecha().equals(fecha)){

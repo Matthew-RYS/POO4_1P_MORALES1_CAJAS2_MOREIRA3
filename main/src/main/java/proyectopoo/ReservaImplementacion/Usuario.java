@@ -27,7 +27,7 @@ public abstract class Usuario{
     }
 
     public abstract void gestionarReserva();
-    public void consultarReserva(Date fecha){
+    public void consultarReserva(){
     }
     public String getCodigoUnico() {
         return codigoUnico;
@@ -78,3 +78,4 @@ public abstract class Usuario{
         this.rol = rol;
     }
 }
+ 

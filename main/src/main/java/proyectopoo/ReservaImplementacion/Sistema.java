@@ -44,46 +44,10 @@ public class Sistema {
                     sc.nextLine(); 
                     switch (opcion) {
                         case 1:
-                            switch (rol) { 
-                                case "E":
-                                    System.out.println("Saludos");
-                                    Estudiante e = new Estudiante(codigoUnico);
-                                    if(e.getCantidadReservas()==1){
-                                        e.gestionarReserva();
-                                    }
-                                    else{
-                                        System.out.println("No se puede generar mas reservas");
-                                    }
-                                    break;
-                                case "P":
-                                    System.out.println("Saludos");
-                                    Profesor p = new Profesor(codigoUnico);
-                                    p.gestionarReserva();
-                                    break;
-                                case "A":
-                                    System.out.println("Saludos");
-                                    Admin a = new Admin(codigoUnico);
-                                    a.gestionarReserva();
-                                    break;
-                                }
+                                retornar(codigoUnico).gestionarReserva();
                                 break;
                         case 2:
-                            switch (rol) {
-                                case "E":
-                                    System.out.println("Saludos");
-                                    Estudiante e = new Estudiante(codigoUnico);
-                                    e.consultarReserva(Reserva.crearFecha());
-                                    break;
-                                case "P":
-                                    System.out.println("Saludos");
-                                    Profesor p = new Profesor(codigoUnico);
-                                    p.consultarReserva(Reserva.crearFecha());
-                                    break;
-                                case "A":
-                                    System.out.println("Saludos");
-                                    Admin.consultarReserva();
-                                    break;
-                                }
+                                retornar(codigoUnico).consultarReserva();
                                 break;
                         case 3:
                             continuar = false;
@@ -119,5 +83,22 @@ public class Sistema {
         } else {
             System.out.println("Gracias por usar el sistema de Reservas. ¡Hasta pronto!");
         }
+    }
+    public static Usuario retornar(String codigoUnico){
+        for(Usuario u: usuarios){
+            if(u instanceof Estudiante){
+                Estudiante e = (Estudiante) u;
+                return e;
+            }
+            if(u instanceof Profesor){
+                Profesor p = (Profesor) u;
+                return p;
+            }
+            if(u instanceof Admin){
+                Admin a = (Admin) u;
+                return a;
+            }
+        }
+        return null;
     }
 }
