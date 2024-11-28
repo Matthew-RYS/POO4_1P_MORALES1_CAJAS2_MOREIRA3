@@ -1,7 +1,7 @@
 package proyectopoo.ReservaImplementacion;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.Scanner;
-import java.util.ArrayList;;
+import java.util.Scanner;;
 
 public class Profesor extends Usuario{
     private String facultad;
@@ -15,7 +15,7 @@ public class Profesor extends Usuario{
     public Profesor(String codigoUnico){
         super(codigoUnico);
     }
-
+    @Override
     public void consultarReserva(Date fecha){
         for(Reserva i:Sistema.reservas){
             if(i.getFecha().equals(fecha)){
