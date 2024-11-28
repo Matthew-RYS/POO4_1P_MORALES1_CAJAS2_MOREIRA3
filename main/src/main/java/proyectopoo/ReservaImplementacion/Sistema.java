@@ -2,12 +2,21 @@ package proyectopoo.ReservaImplementacion;
 import java.util.ArrayList;
 import java.util.Scanner;
 import proyectopoo.ReservaImplementacion.archivo.ManejoArchivos;
+import proyectopoo.ReservaImplementacion.archivo.Archivo;
 public class Sistema {
     public static ArrayList<Usuario> usuarios = new ArrayList<>();                 
     public static ArrayList<Espacio> espacios = new ArrayList<>();
     public static ArrayList<Reserva> reservas = new ArrayList<>();
-    public static ArrayList<Estudiante> estudiantes;
-    public static ArrayList<Profesor> profesores;
+    public static ArrayList<Estudiante> estudiantes = new ArrayList<>();
+    public static ArrayList<Profesor> profesores = new ArrayList<>();
+    public static ArrayList<Admin> administradores = new ArrayList<>();
+    
+    Archivo.cargarUsuarios();
+    Archivo.cargarEstudiantes();
+    Archivo.cargarProfesores();
+    Archivo.cargarAdministradores();
+    Archivo.cargarReservas();
+    Archivo.cargarEspacios();
 
     public static void logIn(String usuario, String contrasena) {
         ArrayList<String> lineas = ManejoArchivos.LeeFichero("C:\\Users\\misae\\POO4_1P_MORALES1_CAJAS2_MOREIRA3\\main\\usuarios.txt");   
@@ -17,7 +26,7 @@ public class Sistema {
     
         for (String linea : lineas) {
             String[] palabras = linea.split("\\|");
-            if(usuario.equals("jperez")&&contrasena.equals("contrasena123")){
+            if(usuario.equals(usuario)&&contrasena.equals(contrasena)){
                 rol = palabras[7];
                 System.out.println(rol);
                 usuarioEncontrado = true;

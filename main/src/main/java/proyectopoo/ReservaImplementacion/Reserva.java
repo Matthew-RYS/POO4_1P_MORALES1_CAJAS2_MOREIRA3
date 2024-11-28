@@ -1,6 +1,7 @@
 package proyectopoo.ReservaImplementacion;
 import java.util.Random;
 import java.util.Scanner;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -16,6 +17,23 @@ public class Reserva {
     public int codigoReserva;
     public String motivo;
     public static int contador;
+
+    public Reserva(String codigoReserva, String codigoU, String fecha, String codigoE, String estado, String motivo){
+        this.codigoReserva = Integer.parseInt(codigoReserva);
+        try {
+            SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+            this.fecha = formato.parse(fecha);
+
+            System.out.println("Fecha: " + fecha);
+        } catch (Exception e) {
+            System.out.println("Error al convertir la fecha: " + e.getMessage());
+        }
+        this.usuario = buscarUsuario(codigoU);
+        this.espacio = buscarEspacio(Integer.parseInt(codigoE));
+        this.estado = Estado.valueOf(estado);
+        this.motivo = motivo;
+
+    }
     
 
     public String toString(){
@@ -31,18 +49,8 @@ public class Reserva {
         this.fecha = fecha;
         this.motivo = motivo;
         this.estado = estado;
-        for(Usuario u:Sistema.usuarios){
-            if(u.getCodigoUnico() == codigoU){
-                this.usuario = u;
-            }
-        }
-        this.codigoReserva = generarCodigo();
-        for(Espacio e:Sistema.espacios){
-            if(e.getCodigoEspacio() == codigoE){
-                this.espacio = e;
-                e.setCapacidad(e.getCapacidad()-1);
-            }
-        }
+        this.usuario = buscarUsuario(codigoU);
+        this.espacio = buscarEspacio(codigoE);
         ++contador;
     }
     public Reserva(Date fecha){
@@ -52,23 +60,12 @@ public class Reserva {
         this.fecha = fecha;
         this.motivo = motivo;
         this.estado = Estado.APROBADO;
-        for(Usuario u:Sistema.usuarios){
-            if(u.getCodigoUnico() == codigoU){
-                this.usuario = u;
-            }
-        }
+        this.usuario = buscarUsuario(codigoU);
         this.codigoReserva = generarCodigo();
-        for(Espacio e:Sistema.espacios){
-            if(e.getCodigoEspacio() == codigoE){
-                this.espacio = e;
-            }
-        }
+        this.usuario = buscarUsuario(codigoU);
+        this.espacio = buscarEspacio(codigoE);
+        
         ++contador;
-    }
-    public void cambiarEstado(String estado, String motivo){
-        this.estado=Estado.NEGADO;
-        this.motivo=motivo;
-
     }
 
     private int generarCodigo(){
@@ -208,6 +205,24 @@ public class Reserva {
         @SuppressWarnings("deprecation")
         Date fecha = new Date(dia, mes, 2024, hora, 30);
         return fecha;
+    }
+
+    public Usuario buscarUsuario(String codigoU){
+        for(Usuario u:Sistema.usuarios){
+            if(u.getCodigoUnico() == codigoU){
+                return u;
+            }
+        }
+        return null;
+    }
+
+    public Espacio buscarEspacio(int codigoE){
+        for(Espacio e:Sistema.espacios){
+            if(e.getCodigoEspacio() == codigoE){
+                return e;
+            }
+        }
+        return null;
     }
 
     public Usuario getUsuario() {

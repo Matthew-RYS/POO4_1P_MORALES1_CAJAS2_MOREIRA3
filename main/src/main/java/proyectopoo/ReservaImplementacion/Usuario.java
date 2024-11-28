@@ -12,6 +12,25 @@ public abstract class Usuario{
     protected String correo;
     protected Rol rol;
 
+    public Usuario(String codigoUnico, String cedula, String nombres, String apellidos, String usuario, String contrasena, String correo, String rol){
+        this.codigoUnico = codigoUnico;
+        this.cedula = cedula;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.usuario = usuario;
+        this.contrasena = contrasena;
+        this.correo =correo;
+        if(rol.equals("E")){
+            this.rol = Rol.ESTUDIANTE;
+        }
+        if(rol.equals("A")){
+            this.rol = Rol.ADMIN;
+        }
+        if(rol.equals("P")){
+            this.rol = Rol.PROFESOR;
+        }
+    }
+
     public Usuario(String codigoUnico){
         this.codigoUnico=codigoUnico;
     }

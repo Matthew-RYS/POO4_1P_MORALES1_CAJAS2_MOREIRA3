@@ -8,6 +8,15 @@ public class Espacio {
     protected int capacidad;
     Rol permiso;
 
+    public Espacio(String codigoEspacio, String tipoEspacio, String nombre, String capacidad, String estadoEspacio, String permiso){
+        this.codigoEspacio = Integer.parseInt(codigoEspacio);
+        this.tipoEspacio = Espacios.valueOf(tipoEspacio);
+        this.nombre = nombre;
+        this.capacidad = Integer.parseInt(capacidad);
+        this.estadoEspacio = EstadoEspacio.valueOf(estadoEspacio);
+        this.permiso = Rol.valueOf(permiso);
+    }
+
     public Espacio(int codigoEspacio, String nombre, EstadoEspacio estadoEspacio){
         this.codigoEspacio = generarCodigo();
         this.codigoEspacio = codigoEspacio;

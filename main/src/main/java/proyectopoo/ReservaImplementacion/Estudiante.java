@@ -8,6 +8,10 @@ public class Estudiante extends Usuario{
     private String carrera;
     public int cantidadReservas=1;
 
+    public Estudiante(String codigoUnico, String cedula, String nombres, String apellidos, String usuario, String contrasena, String correo, String rol){
+        super(codigoUnico, cedula, nombres, apellidos, usuario, contrasena, correo, rol);
+    }
+
     public Estudiante(String codigoUnico, String cedula, String nombres, String apellidos, String usuario, String contrasena, String correo, String matricula, String carrera){
         super(codigoUnico, cedula, nombres, apellidos, usuario, contrasena, correo, Rol.ESTUDIANTE);
         this.matricula=matricula;

@@ -10,7 +10,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class ManejoArchivos {
-
     public static ArrayList<String> LeeFichero(String nombrearchivo) {
         ArrayList<String> lineas = new ArrayList<>();
         File archivo = null;
@@ -29,6 +28,7 @@ public class ManejoArchivos {
             String linea;
             while ((linea = br.readLine()) != null) {
                 lineas.add(linea);
+                System.out.println(linea);
             }
 
         } catch (Exception e) {
