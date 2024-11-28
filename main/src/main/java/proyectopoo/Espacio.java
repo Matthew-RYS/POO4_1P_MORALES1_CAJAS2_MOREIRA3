@@ -45,15 +45,12 @@ public class Espacio {
     public String getNombre() {
         return nombre;
     }
-
     public EstadoEspacio getEstadoEspacio() {
         return estadoEspacio;
     }
-
     public void setAcceso(ArrayList<Usuario> acceso) {
         this.acceso = acceso;
     }
-    
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
