@@ -20,7 +20,7 @@ public class Archivos {
             if(u instanceof Profesor){
                 Profesor p = (Profesor) u;
                 String linea2 = u.getCodigoUnico()+"|"+u.getCedula()+"|"+u.getNombres()+"|"+u.getApellidos()+"|"+p.getFacultad()+"|"+p.getMaterias();
-                ManejoArchivos.EscribirArchivo("Estudiantes.txt", linea2);
+                ManejoArchivos.EscribirArchivo("Profesores.txt", linea2);
             }
         }
     }
