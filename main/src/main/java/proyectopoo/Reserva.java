@@ -1,5 +1,6 @@
 package proyectopoo;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.Date;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -25,19 +26,7 @@ public class Reserva {
                "Nombres: " + this.usuario.getNombres()+
                "Apellidos" + this.usuario.getApellidos();
     }
-    public Reserva(Date fecha){
-        this.fecha = fecha;
-    }
-    public Reserva(Estado estado){
-        this.estado = estado;
-    }
-    public Reserva(Date fecha, Espacio espacio, String motivo, Estado estado){
-        this.fecha = fecha;
-        this.espacio = espacio;
-        this.motivo = motivo;
-        this.estado = estado;
-    }
-    public Reserva(Date fecha, int codigo, String motivo, Estado estado, String codigoU){
+    public Reserva(Date fecha, int codigoE, String motivo, Estado estado, String codigoU){
         this.fecha = fecha;
         this.motivo = motivo;
         this.estado = estado;
@@ -48,7 +37,24 @@ public class Reserva {
         }
         this.codigoReserva = generarCodigo();
         for(Espacio e:Sistema.espacios){
-            if(e.getCodigoEspacio() == codigo){
+            if(e.getCodigoEspacio() == codigoE){
+                this.espacio = e;
+            }
+        }
+        ++contador;
+    }
+    public Reserva(Date fecha, int codigoE, String motivo, String codigoU){
+        this.fecha = fecha;
+        this.motivo = motivo;
+        this.estado = Estado.APROBADO;
+        for(Usuario u:Sistema.usuarios){
+            if(u.getCodigoUnico() == codigoU){
+                this.usuario = u;
+            }
+        }
+        this.codigoReserva = generarCodigo();
+        for(Espacio e:Sistema.espacios){
+            if(e.getCodigoEspacio() == codigoE){
                 this.espacio = e;
             }
         }
@@ -73,14 +79,6 @@ public class Reserva {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-
-    // public Espacio getEspacioDisponible() {
-    //     return espacioDisponible;
-    // }
-
-//    public void setEspacioDisponible(Espacio espacioDisponible) {
-//        this.espacioDisponible = espacioDisponible;
-//    }
 
     public void enviarCorreo(){
         String linea1 = "El estudiante "+this.usuario.getNombres()+" y apellidos "+this.usuario.getApellidos()+" ha realizado una reserva con codigo "+this.codigoReserva+ " para la fecha "+this.fecha+" en la "+this.espacio.getTipoEspacio()+this.espacio.getNombre();
@@ -190,6 +188,22 @@ public class Reserva {
             System.out.println(e.getMessage());
 
         }
+    }
+
+    public static Date crearFecha(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Ingrese el dia");
+        int dia = sc.nextInt();
+        sc.nextLine();
+        System.out.println("Ingrese el mes");
+        int mes = sc.nextInt();
+        sc.nextLine();
+        System.out.println("Ingrese la hora");
+        int hora = sc.nextInt();
+        sc.nextLine();
+        @SuppressWarnings("deprecation")
+        Date fecha = new Date(dia, mes, 2024, hora, 0);
+        return fecha;
     }
 
     public Usuario getUsuario() {

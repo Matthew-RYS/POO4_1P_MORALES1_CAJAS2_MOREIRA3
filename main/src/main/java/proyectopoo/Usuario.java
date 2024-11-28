@@ -12,6 +12,9 @@ public abstract class Usuario{
     protected String correo;
     protected Rol rol;
 
+    public Usuario(String codigoUnico){
+        this.codigoUnico=codigoUnico;
+    }
     public Usuario(String codigoUnico, String cedula, String nombres, String apellidos, String usuario, String contrasena, String correo, Rol rol){
         this.codigoUnico = codigoUnico;
         this.cedula = cedula;
@@ -23,8 +26,13 @@ public abstract class Usuario{
         this.rol = rol;
     }
 
-    public abstract Reserva gestionarReserva(Date fecha, int codigo, String motivo);
+    public abstract void gestionarReserva();
     public void consultarReserva(Date fecha){
+        for(Reserva i:Sistema.reservas){
+            if(i.getFecha().equals(fecha)){
+                System.out.println(i.toString());
+            }
+        }
     }
     public String getCodigoUnico() {
         return codigoUnico;
