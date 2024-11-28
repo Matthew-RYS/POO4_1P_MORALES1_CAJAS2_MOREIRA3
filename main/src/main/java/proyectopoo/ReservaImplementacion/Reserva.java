@@ -40,6 +40,7 @@ public class Reserva {
         for(Espacio e:Sistema.espacios){
             if(e.getCodigoEspacio() == codigoE){
                 this.espacio = e;
+                e.setCapacidad(e.getCapacidad()-1);
             }
         }
         ++contador;

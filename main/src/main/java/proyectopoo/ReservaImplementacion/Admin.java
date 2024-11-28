@@ -9,8 +9,8 @@ public class Admin extends Usuario{
         super(codigoUnico);
     }
 
-    public Admin(String codigoUnico, String cedula, String nombres, String apellidos, String ususario, String contrasena, String correo, Rol rol, Cargo cargo){
-        super(codigoUnico, cedula, nombres, apellidos, ususario, contrasena, correo, rol);
+    public Admin(String codigoUnico, String cedula, String nombres, String apellidos, String ususario, String contrasena, String correo, Cargo cargo){
+        super(codigoUnico, cedula, nombres, apellidos, ususario, contrasena, correo, Rol.ADMIN);
         this.cargo=cargo;
     }
 

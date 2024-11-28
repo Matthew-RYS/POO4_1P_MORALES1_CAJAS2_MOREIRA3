@@ -1,24 +1,36 @@
 package proyectopoo.ReservaImplementacion;
-
-import java.util.ArrayList;
 import java.util.Random;
 public class Espacio {
     protected Espacios tipoEspacio;
     protected int codigoEspacio;
-    protected ArrayList<Usuario> acceso;
     protected String nombre;
     protected EstadoEspacio estadoEspacio;
     protected int capacidad;
     Rol permiso;
 
-    public Espacio(Espacios tipoEspacio, ArrayList<Usuario> acceso, String nombre, EstadoEspacio estadoEspacio, Rol permiso, int capacidad){
-        this.tipoEspacio = tipoEspacio;
-        this.acceso = acceso;
+    public Espacio(int codigoEspacio, String nombre, EstadoEspacio estadoEspacio){
+        this.codigoEspacio = generarCodigo();
+        this.codigoEspacio = codigoEspacio;
         this.nombre = nombre;
         this.estadoEspacio = estadoEspacio;
-        this.permiso = permiso;
-        this.capacidad = capacidad;
-        this.codigoEspacio = generarCodigo();
+        if(tipoEspacio.equals(Espacios.CANCHA)){
+        }
+        else if(tipoEspacio.equals(Espacios.AUDITORIO)||tipoEspacio.equals(Espacios.LABORATORIO)){
+            this.permiso = Rol.PROFESOR;
+        }
+        else if(tipoEspacio.equals(Espacios.AULA)){
+            this.permiso = Rol.AMBOS;
+        }
+    }
+
+    public Espacio(int codigoEspacio, String nombre, EstadoEspacio estadoEspacio,int capacidad){
+        this(codigoEspacio,nombre,estadoEspacio);
+        if(capacidad!=0){
+            this.estadoEspacio=EstadoEspacio.DISPONIBLE;
+        }
+        else if(capacidad==0){
+            this.estadoEspacio=EstadoEspacio.RESERVADO;
+        }
     }
 
     private int generarCodigo(){
@@ -35,21 +47,11 @@ public class Espacio {
     public int getCodigoEspacio() {
         return codigoEspacio;
     }
-    public String getAcceso() {
-        ArrayList<String> usuariosAcceso = new ArrayList<String>();
-        for(Usuario u: acceso){
-            usuariosAcceso.add(u.getNombres());
-        }
-        return String.join(",", usuariosAcceso);
-    }
     public String getNombre() {
         return nombre;
     }
     public EstadoEspacio getEstadoEspacio() {
         return estadoEspacio;
-    }
-    public void setAcceso(ArrayList<Usuario> acceso) {
-        this.acceso = acceso;
     }
     public void setNombre(String nombre) {
         this.nombre = nombre;
