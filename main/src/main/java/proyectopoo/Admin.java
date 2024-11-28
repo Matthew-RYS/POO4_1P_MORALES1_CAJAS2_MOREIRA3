@@ -53,6 +53,6 @@ public class Admin extends Usuario{
     }
     public void setCargo(Cargo cargo){
         this.cargo = cargo;
-    }
+    } 
     
 }
