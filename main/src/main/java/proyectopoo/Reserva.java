@@ -1,11 +1,17 @@
 package proyectopoo;
-import java.util.Random;
 import java.util.Date;
-import javax.mail.*;
+import java.util.Properties;
+import java.util.Random;
+
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import io.github.cdimascio.dotenv.*;
-import java.util.Properties;
+
+import io.github.cdimascio.dotenv.Dotenv;
 
 public class Reserva {
     public Date fecha;
@@ -16,6 +22,7 @@ public class Reserva {
     public String motivo;
     public static int contador;
     
+    @Override
     public String toString(){
         return "Codigo:" + this.codigoReserva+
                "Fecha: " + String.valueOf(fecha)+
