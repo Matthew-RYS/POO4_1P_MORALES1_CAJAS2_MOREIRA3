@@ -51,7 +51,7 @@ public class Espacio {
 
     @Override
     public String toString() {
-        return "Nombre: " + this.nombre + " Codigo: " + String.valueOf(this.codigoEspacio);
+        return "Nombre: " + this.nombre + " Codigo: " + String.valueOf(this.codigoEspacio) + " Capacidad: " + String.valueOf(this.capacidad);
     }
     public int getCodigoEspacio() {
         return codigoEspacio;

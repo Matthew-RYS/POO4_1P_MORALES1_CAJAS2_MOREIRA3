@@ -6,10 +6,10 @@ import java.util.Scanner;
 public class Estudiante extends Usuario{
     private String matricula;
     private String carrera;
-    public int cantidadReservas=1;
 
     public Estudiante(String codigoUnico, String cedula, String nombres, String apellidos, String usuario, String contrasena, String correo, String rol){
         super(codigoUnico, cedula, nombres, apellidos, usuario, contrasena, correo, rol);
+        
     }
 
     public Estudiante(String codigoUnico, String cedula, String nombres, String apellidos, String usuario, String contrasena, String correo, String matricula, String carrera){
@@ -44,41 +44,50 @@ public class Estudiante extends Usuario{
     public void gestionarReserva(){
         System.out.println("Nota: solo puede realizar una reservacion por fecha");
         Date fecha = Reserva.crearFecha();
+        System.out.println("Espacios Disponibles: ");
         for(Espacio e:Sistema.espacios){
             if(e.getPermiso().equals(Rol.ESTUDIANTE)){
                 e.mostrarEspaciosDisponibles();
             }
         }
-        justOne(fecha);
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Ingrese el codigo del Espacio a reservar");
-        int codigoEspacio = sc.nextInt();
-        sc.nextLine();
-        System.out.println("Ingrese su motivo para reservar");
-        String motivo = sc.nextLine();
-        System.out.println("Desea crear su reserva? Si/No");
-        String confirmacion = sc.nextLine();
-        if(confirmacion.equals("Si")){
-            Reserva r = new Reserva(fecha,codigoEspacio,motivo,Estado.PENDIENTE,codigoUnico);
-            Sistema.reservas.add(r);
-            System.out.println("Reserva Generada");
-            r.enviarCorreo();
-        }
-        else{
-            System.out.println("Reserva cancelada");
-        }
-        String rol = "E";
-        Sistema.regresarMenuPrincipal(this.codigoUnico,rol);
-    }
-    public void justOne(Date fecha){
-        for(Reserva r: Sistema.reservas){
-            if(r.getUsuario().getCodigoUnico().equals(this.codigoUnico)&&!r.getFecha().equals(fecha)){
-                this.cantidadReservas=1;
+        int cantidadReservas = justOne(fecha);
+        if(cantidadReservas==1){
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Ingrese el codigo del Espacio a reservar");
+            int codigoEspacio = sc.nextInt();
+            sc.nextLine();
+            System.out.println("Ingrese su motivo para reservar");
+            String motivo = sc.nextLine();
+            System.out.println("Desea crear su reserva? Si/No");
+            String confirmacion = sc.nextLine();
+            if(confirmacion.equals("Si")){
+                Reserva r = new Reserva(fecha,codigoEspacio,motivo,Estado.PENDIENTE,codigoUnico);
+                Sistema.reservas.add(r);
+                System.out.println("Reserva Generada");
+                for(Admin a: Sistema.administradores){
+                    r.enviarCorreo(a.getCorreo());
+                }
             }
             else{
-                this.cantidadReservas=0;
+                System.out.println("Reserva cancelada");
+            }
+            String rol = "E";
+            Sistema.regresarMenuPrincipal(this.codigoUnico,rol);
+        }
+        else if(cantidadReservas==2){
+            System.out.println("Ya no puede realizar mas reservas para esa fecha");
+        }
+    }
+    public int justOne(Date fecha){
+        for(Reserva r: Sistema.reservas){
+            if(r.getUsuario().getCodigoUnico().trim().equals(this.codigoUnico.trim())&&r.getFecha().equals(fecha)){
+                return 2;
+            }
+            else if(r.getUsuario().getCodigoUnico().trim().equals(this.codigoUnico.trim())&&!r.getFecha().equals(fecha)){
+                return 1;
             }
         }
+        return 0;
     }
     public String getMatricula(){
         return matricula;
@@ -92,8 +101,4 @@ public class Estudiante extends Usuario{
     public void setCarrera(String carrera){
         this.carrera = carrera;
     }
-    public int getCantidadReservas() {
-        return cantidadReservas;
-    }
-    
 }

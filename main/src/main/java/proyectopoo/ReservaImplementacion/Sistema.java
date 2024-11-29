@@ -18,23 +18,23 @@ public class Sistema {
         String rol = "";
         String codigoUnico = "";
         for (String linea : lineas) {
-            String[] palabras = linea.split("\\|");
-            if(usuario.trim().equals(usuario)&&contrasena.trim().equals(contrasena)){
-                rol = palabras[7];
-                System.out.println(rol);
-                usuarioEncontrado = true;
-                codigoUnico = palabras[0];
-                System.out.println(codigoUnico);
-                break;
+                String[] palabras = linea.split("\\|");
+                if(usuario.trim().equals(palabras[4].trim())&&contrasena.trim().equals(palabras[5].trim())){
+                    rol = palabras[7].trim();
+                    System.out.println(rol);
+                    usuarioEncontrado = true;
+                    codigoUnico = palabras[0].trim();
+                    System.out.println(codigoUnico);
+                    break;
              }
-         }
+        }
         mostrarMenu(codigoUnico, rol, usuarioEncontrado);
     }
     
 
     public static void mostrarMenu(String codigoUnico, String rol, boolean usuarioEncontrado) {
         try (Scanner sc = new Scanner(System.in)) {
-            if (usuarioEncontrado) {
+            if (usuarioEncontrado==true) {
                 boolean continuar = true;
                 while (continuar) {
                     System.out.println("\nBienvenido/a al sistema de Reservas");
@@ -44,20 +44,6 @@ public class Sistema {
                     System.out.println("3. Salir");
                     int opcion = sc.nextInt();
                     sc.nextLine(); 
-                    System.err.println("=========================================");
-                    Manejos.mostrarUsuarios();
-                    System.err.println("=========================================");
-                    Manejos.mostrarAdministradores();
-                    System.err.println("=========================================");
-                    Manejos.mostrarEspacios();
-                    System.err.println("=========================================");
-                    Manejos.mostrarEstudiantes();
-                    System.err.println("=========================================");
-                    Manejos.mostrarProfesores();
-                    System.err.println("=========================================");
-                    Manejos.mostrarReservas();
-                    System.err.println("=========================================");
-
                     switch (opcion) {
                         case 1:
                                 retornar(codigoUnico).gestionarReserva();
@@ -115,21 +101,19 @@ public class Sistema {
             System.out.println("Gracias por usar el sistema de Reservas. ¡Hasta pronto!");
         }
     }
-    public static Usuario retornar(String codigoUnico){
-        for(Usuario u: usuarios){
-            if(u instanceof Estudiante){
-                Estudiante e = (Estudiante) u;
-                return e;
-            }
-            if(u instanceof Profesor){
-                Profesor p = (Profesor) u;
-                return p;
-            }
-            if(u instanceof Admin){
-                Admin a = (Admin) u;
-                return a;
+    public static Usuario retornar(String codigoUnico) {
+        for (Usuario u : usuarios) {
+            System.out.println("1");
+            System.out.println(u.getCodigoUnico()+"///");
+            if (u.getCodigoUnico().trim().equals(codigoUnico.trim()) && u.getRol().equals(Rol.ESTUDIANTE)) {
+                return (Estudiante) u;
+            } else if (u.getCodigoUnico().trim().equals(codigoUnico.trim()) && u.getRol().equals(Rol.PROFESOR)) {
+                return (Profesor) u;
+            } else if (u.getCodigoUnico().trim().equals(codigoUnico.trim()) && u.getRol().equals(Rol.ADMIN)) {
+                return (Admin) u;
             }
         }
         return null;
     }
+    
 }

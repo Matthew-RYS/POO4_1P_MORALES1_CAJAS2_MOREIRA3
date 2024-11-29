@@ -22,7 +22,7 @@ public class Reserva {
     public Reserva(String codigoReserva, String codigoU, String fecha, String codigoE, String estado, String motivo){
         this.codigoReserva = Integer.parseInt(codigoReserva);
         try {
-            SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
             this.fecha = formato.parse(fecha);
         } catch (Exception e) {
             System.out.println("Error al convertir la fecha: " + e.getMessage());
@@ -36,13 +36,13 @@ public class Reserva {
     
 
     public String toString(){
-        return "Codigo:" + this.codigoReserva+
-               "Fecha: " + String.valueOf(fecha)+
-               "Tipo espacio: " + String.valueOf(this.espacio.getTipoEspacio())+
-               "Nombre espacio" + String.valueOf(this.espacio.getNombre())+
-               "Capacidad: " + String.valueOf(this.espacio.getCapacidad())+
-               "Nombres: " + this.usuario.getNombres()+
-               "Apellidos" + this.usuario.getApellidos();
+        return " Codigo:" + this.codigoReserva+
+               " Fecha: " + String.valueOf(fecha)+
+               " Tipo espacio: " + String.valueOf(this.espacio.getTipoEspacio())+
+               " Nombre espacio" + String.valueOf(this.espacio.getNombre())+
+               " Capacidad: " + String.valueOf(this.espacio.getCapacidad())+
+               " Nombres: " + this.usuario.getNombres()+
+               " Apellidos" + this.usuario.getApellidos();
     }
     public Reserva(Date fecha, int codigoE, String motivo, Estado estado, String codigoU){
         this.fecha = fecha;
@@ -83,7 +83,7 @@ public class Reserva {
         this.fecha = fecha;
     }
 
-    public  void enviarCorreo(){
+    public  void enviarCorreo(String correo){
         String linea1 = "El estudiante "+this.usuario.getNombres()+" y apellidos "+this.usuario.getApellidos()+" ha realizado una reserva con codigo "+this.codigoReserva+ " para la fecha "+this.fecha+" en la "+this.espacio.getTipoEspacio()+this.espacio.getNombre();
         String linea2 = "Ingrese al sistema para aprobar o rechazar la reserva";
         String linea = linea1 + "\n"+ linea2;
@@ -107,7 +107,7 @@ public class Reserva {
         try {
             Message mes = new MimeMessage(session);
             mes.setFrom(new InternetAddress(user, "APP RESERVAS"));
-            mes.setRecipients(Message.RecipientType.TO, InternetAddress.parse("mijomore@espol.edu.ec"));
+            mes.setRecipients(Message.RecipientType.TO, InternetAddress.parse(correo));
             mes.setSubject("Reserva realizada");
             mes.setText(linea);
             Transport.send(mes);
@@ -117,7 +117,7 @@ public class Reserva {
         }
     }
 
-    public void enviarCorreo(String materia){
+    public void enviarCorreo(String materia, String correo){
         String linea1 = "Se le notifica que el profesor "+this.usuario.getNombres()+" y apellidos "+this.usuario.getApellidos()+" ha realizado una reserva con codigo "+ this.codigoReserva+ " para la fecha "+this.fecha+" en la "+this.espacio.getTipoEspacio()+ this.espacio.getNombre()+" para la materia "+materia;
         String linea2 = "Ingrese al sistema para aprobar o rechazar la reserva";
         String linea = linea1 + "\n"+ linea2;
@@ -141,7 +141,7 @@ public class Reserva {
         try {
             Message mes = new MimeMessage(session);
             mes.setFrom(new InternetAddress(user, "APP RESERVAS"));
-            mes.setRecipients(Message.RecipientType.TO, InternetAddress.parse("mijomore@espol.edu.ec"));
+            mes.setRecipients(Message.RecipientType.TO, InternetAddress.parse(correo));
             mes.setSubject("Reserva realizada");
             mes.setText(linea);
             Transport.send(mes);
@@ -195,17 +195,16 @@ public class Reserva {
 
     public static Date crearFecha(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("Ingrese el dia");
-        int dia = sc.nextInt();
-        sc.nextLine();
-        System.out.println("Ingrese el mes");
-        int mes = sc.nextInt();
-        sc.nextLine();
-        System.out.println("Ingrese la hora");
-        int hora = sc.nextInt();
-        @SuppressWarnings("deprecation")
-        Date fecha = new Date(dia, mes, 2024, hora, 30);
-        return fecha;
+        System.out.println("Ingrese la fecha en formato yyyy-MM-dd");
+        String fecha = sc.nextLine();
+        try {
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+            Date fech = formato.parse(fecha);
+            return fech;
+        } catch (Exception e) {
+            System.out.println("Error al convertir la fecha: " + e.getMessage());
+        }
+        return null;
     }
 
     private Usuario buscarUsuario(String codigoU) {
@@ -221,6 +220,7 @@ public class Reserva {
     public Espacio buscarEspacio(int codigoE){
         for(Espacio e:Sistema.espacios){
             if(e.getCodigoEspacio() == codigoE){
+                e.setCapacidad(e.getCapacidad()-1);
                 return e;
             }
         }
