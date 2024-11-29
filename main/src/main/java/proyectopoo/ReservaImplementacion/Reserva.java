@@ -23,8 +23,6 @@ public class Reserva {
         try {
             SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
             this.fecha = formato.parse(fecha);
-
-            System.out.println("Fecha: " + fecha);
         } catch (Exception e) {
             System.out.println("Error al convertir la fecha: " + e.getMessage());
         }

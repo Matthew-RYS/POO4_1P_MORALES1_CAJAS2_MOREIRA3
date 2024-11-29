@@ -2,7 +2,6 @@ package proyectopoo.ReservaImplementacion;
 import java.util.ArrayList;
 import java.util.Scanner;
 import proyectopoo.ReservaImplementacion.archivo.ManejoArchivos;
-import proyectopoo.ReservaImplementacion.archivo.Archivo;
 public class Sistema {
     public static ArrayList<Usuario> usuarios = new ArrayList<>();                 
     public static ArrayList<Espacio> espacios = new ArrayList<>();
@@ -11,12 +10,6 @@ public class Sistema {
     public static ArrayList<Profesor> profesores = new ArrayList<>();
     public static ArrayList<Admin> administradores = new ArrayList<>();
     
-    Archivo.cargarUsuarios();
-    Archivo.cargarEstudiantes();
-    Archivo.cargarProfesores();
-    Archivo.cargarAdministradores();
-    Archivo.cargarReservas();
-    Archivo.cargarEspacios();
 
     public static void logIn(String usuario, String contrasena) {
         ArrayList<String> lineas = ManejoArchivos.LeeFichero("C:\\Users\\misae\\POO4_1P_MORALES1_CAJAS2_MOREIRA3\\main\\usuarios.txt");   
@@ -25,7 +18,7 @@ public class Sistema {
         String codigoUnico = "";
     
         for (String linea : lineas) {
-            String[] palabras = linea.split("\\|");
+            String[] palabras = linea.split("\\| ");
             if(usuario.equals(usuario)&&contrasena.equals(contrasena)){
                 rol = palabras[7];
                 System.out.println(rol);
@@ -51,6 +44,18 @@ public class Sistema {
                     System.out.println("3. Salir");
                     int opcion = sc.nextInt();
                     sc.nextLine(); 
+                    System.err.println("////////////////////////");
+                    System.out.println(Sistema.usuarios.toString());
+                    System.err.println("////////////////////////");
+                    System.out.println(Sistema.profesores.toString());
+                    System.err.println("////////////////////////");
+                    System.out.println(Sistema.espacios.toString());
+                    System.err.println("////////////////////////");
+                    System.out.println(Sistema.estudiantes.toString());
+                    System.err.println("////////////////////////");
+                    System.out.println(Sistema.administradores.toString());
+                    System.err.println("////////////////////////");
+                    System.out.println(Sistema.reservas.toString());
                     switch (opcion) {
                         case 1:
                                 retornar(codigoUnico).gestionarReserva();
@@ -74,6 +79,20 @@ public class Sistema {
     }
 
     public static void main(String[] args) {
+        System.err.println("////////////////////////");
+        Archivo.cargarUsuarios();
+        System.err.println("////////////////////////");
+        Archivo.cargarAdministradores();
+        System.err.println("////////////////////////");
+        Archivo.cargarEspacios();
+        System.err.println("////////////////////////");
+        Archivo.cargarProfesores();
+        System.err.println("////////////////////////");
+        Archivo.cargarReservas();
+        System.err.println("////////////////////////");
+        Archivo.cargarEstudiantes();
+        System.err.println("////////////////////////");
+
         Scanner sc = new Scanner(System.in);
         System.out.println("RESERVAS ESPOL");
         System.out.print("Ingrese su usuario: ");

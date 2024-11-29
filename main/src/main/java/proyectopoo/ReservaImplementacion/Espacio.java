@@ -9,7 +9,7 @@ public class Espacio {
     Rol permiso;
 
     public Espacio(String codigoEspacio, String tipoEspacio, String nombre, String capacidad, String estadoEspacio, String permiso){
-        this.codigoEspacio = Integer.parseInt(codigoEspacio);
+        this.codigoEspacio = Integer.parseInt(codigoEspacio.trim());
         this.tipoEspacio = Espacios.valueOf(tipoEspacio);
         this.nombre = nombre;
         this.capacidad = Integer.parseInt(capacidad);

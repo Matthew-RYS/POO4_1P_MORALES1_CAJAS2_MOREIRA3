@@ -1,5 +1,4 @@
 package proyectopoo.ReservaImplementacion;
-import java.util.Date;
 
 
 public abstract class Usuario{
