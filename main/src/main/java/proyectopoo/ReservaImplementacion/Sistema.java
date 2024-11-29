@@ -18,8 +18,8 @@ public class Sistema {
         String rol = "";
         String codigoUnico = "";
         for (String linea : lineas) {
-            String[] palabras = linea.split("\\| ");
-            if(usuario.equals(usuario)&&contrasena.equals(contrasena)){
+            String[] palabras = linea.split("\\|");
+            if(usuario.trim().equals(usuario)&&contrasena.trim().equals(contrasena)){
                 rol = palabras[7];
                 System.out.println(rol);
                 usuarioEncontrado = true;

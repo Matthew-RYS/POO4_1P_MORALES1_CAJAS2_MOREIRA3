@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.Properties;
 import java.util.Random;
 import java.util.Scanner;
-import java.util.Date;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -56,15 +55,17 @@ public class Reserva {
     public Reserva(Date fecha){
         this.fecha =fecha;
     }
-    public Reserva(Date fecha, int codigoE, String motivo, String codigoU){
+    public Reserva(Date fecha, int codigoE, String motivo, String codigoU) {
         this.fecha = fecha;
         this.motivo = motivo;
-        this.estado = Estado.APROBADO;
-        this.usuario = buscarUsuario(codigoU);
         this.codigoReserva = generarCodigo();
         this.usuario = buscarUsuario(codigoU);
         this.espacio = buscarEspacio(codigoE);
-        
+        if (this.usuario.getRol().equals(Rol.ESTUDIANTE)) {
+            this.estado = Estado.PENDIENTE;
+        } else {
+            this.estado = Estado.APROBADO;
+        }
         ++contador;
     }
 
@@ -207,14 +208,15 @@ public class Reserva {
         return fecha;
     }
 
-    public Usuario buscarUsuario(String codigoU){
-        for(Usuario u:Sistema.usuarios){
-            if(u.getCodigoUnico() == codigoU){
+    private Usuario buscarUsuario(String codigoU) {
+        for (Usuario u : Sistema.usuarios) {
+            if (u.getCodigoUnico().equals(codigoU)) {
                 return u;
             }
         }
-        return null;
+        return null; 
     }
+    
 
     public Espacio buscarEspacio(int codigoE){
         for(Espacio e:Sistema.espacios){

@@ -9,6 +9,7 @@ public class Profesor extends Usuario{
 
     public Profesor(String codigoUnico, String cedula, String nombres, String apellidos, String usuario, String contrasena, String correo, String rol){
         super(codigoUnico, cedula, nombres, apellidos, usuario, contrasena, correo, rol);
+        this.materias = new ArrayList<>();
     }
 
     public Profesor(String codigoUnico, String cedula, String nombres, String apellidos, String ususario, String contrasena, String correo, String facultad, ArrayList<String> materias){
@@ -23,8 +24,8 @@ public class Profesor extends Usuario{
     @Override
     public String toString() {
         return super.toString()+
-               "Facultad: "+this.facultad+
-               "Materias: "+this.materias.toString();
+               " Facultad: "+this.facultad+
+               " Materias: "+this.materias.toString();
     }
 
     public void consultarReserva(Date fecha){
@@ -79,7 +80,7 @@ public class Profesor extends Usuario{
         return facultad;
     }
     public String getMaterias(){
-        return String.join(" ", materias);
+        return String.join(",", materias);
     }
     public void setFacultad(String facultad){
         this.facultad = facultad;

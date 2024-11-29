@@ -28,7 +28,7 @@ public class ManejoArchivos {
             String linea;
             while ((linea = br.readLine()) != null) {
                 lineas.add(linea);
-                System.out.println(linea);
+                //System.out.println(linea);
             }
 
         } catch (Exception e) {

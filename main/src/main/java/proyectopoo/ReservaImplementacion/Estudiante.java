@@ -24,8 +24,8 @@ public class Estudiante extends Usuario{
     @Override
     public String toString() {
         return super.toString()+
-               "Matricula: "+this.matricula+
-               "Carrera: "+this.carrera;
+               " Matricula: "+this.matricula+
+               " Carrera: "+this.carrera;
     }
 
     public void consultarReserva(){

@@ -14,33 +14,32 @@ public abstract class Usuario{
     @Override
     public String toString() {
         return "Codigo: "+this.codigoUnico+
-               "Cedula: "+this.cedula+
-               "Nombres: "+this.nombres+
-               "Apellidos: "+this.apellidos+
-               "Usuario: "+this.usuario+
-               "Correo: "+this.correo+
-               "Rol: "+this.rol;
+               " Cedula: "+this.cedula+
+               " Nombres: "+this.nombres+
+               " Apellidos: "+this.apellidos+
+               " Usuario: "+this.usuario+
+               " Correo: "+this.correo+
+               " Rol: "+this.rol;
 
     }
 
-    public Usuario(String codigoUnico, String cedula, String nombres, String apellidos, String usuario, String contrasena, String correo, String rol){
+    public Usuario(String codigoUnico, String cedula, String nombres, String apellidos, String usuario, String contrasena, String correo, String rol) {
         this.codigoUnico = codigoUnico;
         this.cedula = cedula;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.usuario = usuario;
-        this.contrasena = contrasena;
-        this.correo =correo;
-        if(rol.equals("E")){
+        this.contrasena = contrasena;  
+        this.correo = correo;  
+        if (rol.equals("E")) {
             this.rol = Rol.ESTUDIANTE;
-        }
-        if(rol.equals("A")){
+        } else if (rol.equals("A")) {
             this.rol = Rol.ADMIN;
-        }
-        if(rol.equals("P")){
+        } else if (rol.equals("P")) {
             this.rol = Rol.PROFESOR;
         }
     }
+    
 
 
     public Usuario(String codigoUnico){
