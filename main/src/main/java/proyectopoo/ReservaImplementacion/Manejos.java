@@ -53,9 +53,9 @@ public class Manejos {
         for(String linea: lineas){
             System.out.println(linea);
             String[] palabras = linea.split("\\|");
-            String codigoUnico = palabras[0];
-            String matricula = palabras[4];
-            String carrera = palabras[5];
+            String codigoUnico = palabras[0].trim();
+            String matricula = palabras[4].trim();
+            String carrera = palabras[5].trim();
             for(Usuario u: Sistema.usuarios){
                 if(u instanceof Estudiante && u.getCodigoUnico().equals(codigoUnico)){
                     Estudiante e = (Estudiante) u;
@@ -74,9 +74,9 @@ public class Manejos {
         for(String linea: lineas){
             System.out.println(linea);
             String[] palabras = linea.split("\\|");
-            String codigoUnico = palabras[0];
-            String facultad = palabras[4];
-            String materia = palabras[5];
+            String codigoUnico = palabras[0].trim();
+            String facultad = palabras[4].trim();
+            String materia = palabras[5].trim();
             for(Usuario u: Sistema.usuarios){
                 if(u instanceof Profesor && u.getCodigoUnico().equals(codigoUnico)){
                     Profesor p = (Profesor) u;
@@ -101,8 +101,8 @@ public class Manejos {
                 if(u instanceof Admin && u.getCodigoUnico().equals(codigoUnico)){
                     Admin a = (Admin) u;
                     try {
-                        a.setCargo(Cargo.fromDescripcion(cargo));  // Convierte la descripción a enum
-                        Sistema.administradores.add(a);  // Agrega al administrador
+                        a.setCargo(Cargo.fromDescripcion(cargo));  
+                        Sistema.administradores.add(a);  
                     } catch (IllegalArgumentException e) {
                         System.err.println(e.getMessage());
                     }
