@@ -17,7 +17,6 @@ public class Sistema {
         boolean usuarioEncontrado = false;  
         String rol = "";
         String codigoUnico = "";
-    
         for (String linea : lineas) {
             String[] palabras = linea.split("\\| ");
             if(usuario.equals(usuario)&&contrasena.equals(contrasena)){
@@ -45,18 +44,20 @@ public class Sistema {
                     System.out.println("3. Salir");
                     int opcion = sc.nextInt();
                     sc.nextLine(); 
-                    System.err.println("////////////////////////");
-                    System.out.println(Sistema.usuarios.toString());
-                    System.err.println("////////////////////////");
-                    System.out.println(Sistema.profesores.toString());
-                    System.err.println("////////////////////////");
-                    System.out.println(Sistema.espacios.toString());
-                    System.err.println("////////////////////////");
-                    System.out.println(Sistema.estudiantes.toString());
-                    System.err.println("////////////////////////");
-                    System.out.println(Sistema.administradores.toString());
-                    System.err.println("////////////////////////");
-                    System.out.println(Sistema.reservas.toString());
+                    System.err.println("=========================================");
+                    Manejos.mostrarUsuarios();
+                    System.err.println("=========================================");
+                    Manejos.mostrarAdministradores();
+                    System.err.println("=========================================");
+                    Manejos.mostrarEspacios();
+                    System.err.println("=========================================");
+                    Manejos.mostrarEstudiantes();
+                    System.err.println("=========================================");
+                    Manejos.mostrarProfesores();
+                    System.err.println("=========================================");
+                    Manejos.mostrarReservas();
+                    System.err.println("=========================================");
+
                     switch (opcion) {
                         case 1:
                                 retornar(codigoUnico).gestionarReserva();
@@ -80,19 +81,19 @@ public class Sistema {
     }
 
     public static void main(String[] args) {
-        System.err.println("////////////////////////");
-        Archivo.cargarUsuarios();
-        System.err.println("////////////////////////");
-        Archivo.cargarAdministradores();
-        System.err.println("////////////////////////");
-        Archivo.cargarEspacios();
-        System.err.println("////////////////////////");
-        Archivo.cargarProfesores();
-        System.err.println("////////////////////////");
-        Archivo.cargarReservas();
-        System.err.println("////////////////////////");
-        Archivo.cargarEstudiantes();
-        System.err.println("////////////////////////");
+        System.err.println("///////////////////////////////////////////////////////////////////");
+        Manejos.cargarUsuarios();
+        System.err.println("///////////////////////////////////////////////////////////////////");
+        Manejos.cargarAdministradores();
+        System.err.println("///////////////////////////////////////////////////////////////////");
+        Manejos.cargarEspacios();
+        System.err.println("///////////////////////////////////////////////////////////////////");
+        Manejos.cargarProfesores();
+        System.err.println("///////////////////////////////////////////////////////////////////");
+        Manejos.cargarReservas();
+        System.err.println("///////////////////////////////////////////////////////////////////");
+        Manejos.cargarEstudiantes();
+        System.err.println("///////////////////////////////////////////////////////////////////");
 
         Scanner sc = new Scanner(System.in);
         System.out.println("RESERVAS ESPOL");

@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 
 
-public class Archivo {
+public class Manejos {
     public static void cargarUsuarios(){
         ArrayList<String> lineas = ManejoArchivos.LeeFichero("C:\\Users\\misae\\POO4_1P_MORALES1_CAJAS2_MOREIRA3\\main\\usuarios.txt");        for(String linea: lineas){
             String[] palabras = linea.split("\\|");
@@ -19,11 +19,12 @@ public class Archivo {
                 Usuario p = new Profesor(palabras[0],palabras[1],palabras[2],palabras[3],palabras[4],palabras[5],palabras[6],palabras[7]);
                 Sistema.usuarios.add(p);
             }
-            if(palabras[7].equals("E")){
+            if(palabras[7].equals("A")){
                 Usuario a = new Admin(palabras[0],palabras[1],palabras[2],palabras[3],palabras[4],palabras[5],palabras[6],palabras[7]);
                 Sistema.usuarios.add(a);
             }
         }
+        System.out.println("1");
     }
     public static void cargarReservas(){
         ArrayList<String> lineas = ManejoArchivos.LeeFichero("C:/Users/misae/POO4_1P_MORALES1_CAJAS2_MOREIRA3/main/reservas.txt");
@@ -32,6 +33,8 @@ public class Archivo {
             Reserva r = new Reserva(palabras[0].trim(),palabras[1], palabras[3].trim(), palabras[4].trim(), palabras[6].trim(), palabras[7]);
             Sistema.reservas.add(r);
         }
+        System.out.println("2");
+
     }
     public static void cargarEspacios(){
         ArrayList<String> lineas = ManejoArchivos.LeeFichero("C:/Users/misae/POO4_1P_MORALES1_CAJAS2_MOREIRA3/main/espacios.txt");
@@ -40,6 +43,8 @@ public class Archivo {
             Espacio e = new Espacio(palabras[0].trim(),palabras[1].trim(),palabras[2],palabras[3].trim(),palabras[4].trim(),palabras[5].trim());
             Sistema.espacios.add(e);
         }
+        System.out.println("3");
+
     }
     public static void cargarEstudiantes(){
         ArrayList<String> lineas = ManejoArchivos.LeeFichero("C:/Users/misae/POO4_1P_MORALES1_CAJAS2_MOREIRA3/main/estudiantes.txt");
@@ -57,6 +62,8 @@ public class Archivo {
                 }
             }
         }
+        System.out.println("4");
+
 
     }
 
@@ -77,6 +84,8 @@ public class Archivo {
                 }
             }
         }
+        System.out.println("5");
+
     }
 
     public static void cargarAdministradores(){
@@ -93,6 +102,38 @@ public class Archivo {
                 }
             }
             
+        }
+        System.out.println("6");
+
+    }
+    public static void mostrarUsuarios(){
+        for(Usuario u: Sistema.usuarios){
+            System.err.println(u.toString());
+        }
+    }
+    public static void mostrarEstudiantes(){
+        for(Estudiante e: Sistema.estudiantes){
+            System.err.println(e.toString());
+        }
+    }
+    public static void mostrarProfesores(){
+        for(Profesor p: Sistema.profesores){
+            System.err.println(p.toString());
+        }
+    }
+    public static void mostrarAdministradores(){
+        for(Admin a: Sistema.administradores){
+            System.err.println(a.toString());
+        }
+    }
+    public static void mostrarEspacios(){
+        for(Espacio e: Sistema.espacios){
+            System.err.println(e.toString());
+        }
+    }
+    public static void mostrarReservas(){
+        for(Reserva r: Sistema.reservas){
+            System.err.println(r.toString());
         }
     }
     

@@ -3,7 +3,7 @@ package proyectopoo.ReservaImplementacion;
 import java.util.Scanner;
 
 public class Admin extends Usuario{
-    private Cargo cargo;
+    public Cargo cargo;
 
     public Admin(String codigoUnico){
         super(codigoUnico);
@@ -16,6 +16,12 @@ public class Admin extends Usuario{
     public Admin(String codigoUnico, String cedula, String nombres, String apellidos, String ususario, String contrasena, String correo, Cargo cargo){
         super(codigoUnico, cedula, nombres, apellidos, ususario, contrasena, correo, Rol.ADMIN);
         this.cargo=cargo;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()+
+               "Cargo: "+ String.valueOf(cargo);
     }
 
     @Override

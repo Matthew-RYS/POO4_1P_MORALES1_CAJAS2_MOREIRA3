@@ -20,6 +20,13 @@ public class Profesor extends Usuario{
         super(codigoUnico);
     }
 
+    @Override
+    public String toString() {
+        return super.toString()+
+               "Facultad: "+this.facultad+
+               "Materias: "+this.materias.toString();
+    }
+
     public void consultarReserva(Date fecha){
         for(Reserva i:Sistema.reservas){
             if(i.getFecha().equals(fecha)){

@@ -14,7 +14,7 @@ import io.github.cdimascio.dotenv.Dotenv;
 public class Reserva {
     public Date fecha;
     public Espacio espacio;
-    public Usuario usuario;
+    private Usuario usuario;
     public Estado estado;
     public int codigoReserva;
     public String motivo;

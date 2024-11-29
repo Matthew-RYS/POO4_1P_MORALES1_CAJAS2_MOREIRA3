@@ -11,6 +11,18 @@ public abstract class Usuario{
     protected String correo;
     protected Rol rol;
 
+    @Override
+    public String toString() {
+        return "Codigo: "+this.codigoUnico+
+               "Cedula: "+this.cedula+
+               "Nombres: "+this.nombres+
+               "Apellidos: "+this.apellidos+
+               "Usuario: "+this.usuario+
+               "Correo: "+this.correo+
+               "Rol: "+this.rol;
+
+    }
+
     public Usuario(String codigoUnico, String cedula, String nombres, String apellidos, String usuario, String contrasena, String correo, String rol){
         this.codigoUnico = codigoUnico;
         this.cedula = cedula;
@@ -29,6 +41,7 @@ public abstract class Usuario{
             this.rol = Rol.PROFESOR;
         }
     }
+
 
     public Usuario(String codigoUnico){
         this.codigoUnico=codigoUnico;

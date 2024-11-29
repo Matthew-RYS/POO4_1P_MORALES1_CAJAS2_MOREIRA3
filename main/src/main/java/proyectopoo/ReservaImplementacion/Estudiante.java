@@ -21,6 +21,13 @@ public class Estudiante extends Usuario{
         super(codigoUnico);
     }
 
+    @Override
+    public String toString() {
+        return super.toString()+
+               "Matricula: "+this.matricula+
+               "Carrera: "+this.carrera;
+    }
+
     public void consultarReserva(){
         Date fecha = Reserva.crearFecha();
         for(Reserva i:Sistema.reservas){
