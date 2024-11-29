@@ -151,7 +151,7 @@ public class Reserva {
         }
     }
 
-    public void enviarCorreo(Estado est, String motivo){
+    public void enviarCorreo(Estado est, String motivo, String correo){
         String linea ="";
         if(est.equals(Estado.APROBADO)){
             String linea1 = "Se ha aprobado su reserva con codigo "+this.codigoReserva+" por el siguiente motivo "+motivo;
@@ -163,6 +163,7 @@ public class Reserva {
             String linea2 = "Atentamente,\nDepartamento Administrativo";
             linea = linea1 + "\n"+ linea2;
         }
+
         Dotenv dot = Dotenv.load(); 
         String host = dot.get("MAIL_HOST");
         String port = dot.get("MAIL_PORT");
@@ -183,7 +184,7 @@ public class Reserva {
         try {
             Message mes = new MimeMessage(session);
             mes.setFrom(new InternetAddress(user, "APP RESERVAS"));
-            mes.setRecipients(Message.RecipientType.TO, InternetAddress.parse("mijomore@espol.edu.ec"));
+            mes.setRecipients(Message.RecipientType.TO, InternetAddress.parse(correo));
             mes.setSubject("Reserva realizada");
             mes.setText(linea);
             Transport.send(mes);

@@ -28,6 +28,9 @@ public class Admin extends Usuario{
     public void gestionarReserva(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Ingrese el codigo de la reserva a gestionar: ");
+        for(Reserva r:Sistema.reservas){
+            System.out.println(r.getCodigoReserva());
+        }
         int codigoReservaGestionar = sc.nextInt();
         sc.nextLine();
         for(Reserva r: Sistema.reservas){
@@ -40,12 +43,10 @@ public class Admin extends Usuario{
                 System.out.println("Ingrese el motivo de su decision: ");
                 String motivo = sc.nextLine();
                 r.setEstado(estado);
-                r.enviarCorreo(estado,motivo);
+                r.enviarCorreo(estado,motivo,r.getUsuario().getCorreo());
             }
 
         }
-        sc.close();
-        
     }
     @Override
     public void consultarReserva(){
