@@ -1,13 +1,14 @@
 package proyectopoo.ReservaImplementacion;
+import java.util.Date;
+import java.util.Properties;
 import java.util.Random;
 import java.util.Scanner;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import io.github.cdimascio.dotenv.*;
-import java.util.Properties;
+
+import io.github.cdimascio.dotenv.Dotenv;
 
 public class Reserva {
     public Date fecha;

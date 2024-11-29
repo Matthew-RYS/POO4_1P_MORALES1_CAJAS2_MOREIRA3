@@ -1,7 +1,7 @@
 package proyectopoo.ReservaImplementacion;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.Scanner;
-import java.util.ArrayList;;
+import java.util.Scanner;;
 
 public class Profesor extends Usuario{
     private String facultad;
@@ -20,8 +20,7 @@ public class Profesor extends Usuario{
         super(codigoUnico);
     }
 
-    public void consultarReserva(){
-        Date fecha = Reserva.crearFecha();
+    public void consultarReserva(Date fecha){
         for(Reserva i:Sistema.reservas){
             if(i.getFecha().equals(fecha)){
                 System.out.println(i.toString());
@@ -29,7 +28,7 @@ public class Profesor extends Usuario{
         }
         Sistema.regresarMenuPrincipal(this.codigoUnico,"P");
     }
-    
+
     @Override
     public void gestionarReserva(){
         Scanner sc = new Scanner(System.in);
